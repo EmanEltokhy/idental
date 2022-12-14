@@ -61,16 +61,7 @@ class _LoginState extends State<Login> {
                             style: GoogleFonts.montserrat(
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold,
-                                // shadows: [
-                                //   Shadow(
-                                //       color: Colors.grey.shade500,
-                                //       offset: Offset(3.0, 3.0),
-                                //       blurRadius: 3.0),
-                                //   Shadow(
-                                //       color: Colors.white,
-                                //       offset: Offset(-3.0, 3.0),
-                                //       blurRadius: 3.0),
-                                // ])
+
                             )),
                         SizedBox(height: 5,),
                         Text("please sign in to continue",
