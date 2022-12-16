@@ -90,6 +90,9 @@ class _signupState extends State<signup> {
                         else
                           null;
                       },
+                      onFieldSubmitted: (value){
+                        nameFieldKey.currentState!.validate();
+                      },
                       key: nameFieldKey,
                       decoration: InputDecoration(
                         labelText: 'NAME',
@@ -113,7 +116,9 @@ class _signupState extends State<signup> {
                           color: Colors.black),
                       key: emailFieldKey,
                       controller: emailController,
-
+                      onFieldSubmitted: (value){
+                        emailFieldKey.currentState!.validate();
+                      },
                       validator: (value) => EmailValidator.validate(emailController.text)?null : "Please enter a valid email",
                       decoration: InputDecoration(
                         labelText: 'EMAIL',
@@ -141,6 +146,7 @@ class _signupState extends State<signup> {
                           setState(() {
                             FocusScope.of(context).unfocus();
                             FocusScope.of(context).requestFocus(passwordFocus);
+
                           });
                         },
                         style: GoogleFonts.montserrat(
@@ -261,7 +267,7 @@ class _signupState extends State<signup> {
                     SizedBox(
                       height: 30,
                     ),
-                    defaultButton(150.0, 50.0, 'SIGNUP', emailFieldKey, nameFiledKey: nameFieldKey)
+                    defaultButton(150.0, 50.0, 'SIGNUP',true, (){})
                   ],
                 ),
               ),

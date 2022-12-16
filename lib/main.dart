@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'package:idental/profilePage.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: Login(),
+    home: profileScreen(),
     debugShowCheckedModeBanner: false,
   ));
 }
