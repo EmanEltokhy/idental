@@ -1,9 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:idental/profilePage.dart';
+import 'package:flutter/services.dart';
+
+import './screens/getting_started_screen.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: profileScreen(),
-    debugShowCheckedModeBanner: false,
-  ));
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(MyApp());
+  });
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: GettingStartedScreen(),
+    );
+  }
 }
