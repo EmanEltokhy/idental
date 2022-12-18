@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:idental/layout/home_screen.dart';
 
 import './screens/getting_started_screen.dart';
 
