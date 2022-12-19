@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:idental/layout/home_screen.dart';
 import 'package:idental/screens/appointment_screen.dart';
+import 'package:idental/screens/make_appointment.dart';
 
 import './screens/getting_started_screen.dart';
 

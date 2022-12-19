@@ -36,6 +36,8 @@ dependencies:
   fluentui_system_icons: ^1.1.189
   iconly: ^1.0.1
   fluentui_icons: ^1.0.0
+  table_calendar: ^3.0.8
+
 
 
 
@@ -79,6 +81,8 @@ flutter:
   uses-material-design: true
   assets:
     - images/
+
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
