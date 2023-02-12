@@ -4,6 +4,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:idental/shared/components/components.dart';
 
+import 'layout/home_screen.dart';
+
 
 class signup extends StatefulWidget {
   @override
@@ -90,6 +92,9 @@ class _signupState extends State<signup> {
                         else
                           null;
                       },
+                      onFieldSubmitted: (value){
+                        nameFieldKey.currentState!.validate();
+                      },
                       key: nameFieldKey,
                       decoration: InputDecoration(
                         labelText: 'NAME',
@@ -113,7 +118,9 @@ class _signupState extends State<signup> {
                           color: Colors.black),
                       key: emailFieldKey,
                       controller: emailController,
-
+                      onFieldSubmitted: (value){
+                        emailFieldKey.currentState!.validate();
+                      },
                       validator: (value) => EmailValidator.validate(emailController.text)?null : "Please enter a valid email",
                       decoration: InputDecoration(
                         labelText: 'EMAIL',
@@ -141,6 +148,7 @@ class _signupState extends State<signup> {
                           setState(() {
                             FocusScope.of(context).unfocus();
                             FocusScope.of(context).requestFocus(passwordFocus);
+
                           });
                         },
                         style: GoogleFonts.montserrat(
@@ -174,7 +182,7 @@ class _signupState extends State<signup> {
                         uppercaseCharCount: 1,
                         specialCharCount: 1,
                         width: 400,
-                        height: 85,
+                        height: 90,
                         onSuccess: (){},
                         onFail: (){}
                     ),
@@ -224,7 +232,7 @@ class _signupState extends State<signup> {
                         uppercaseCharCount: 1,
                         specialCharCount: 1,
                         width: 400,
-                        height: 85,
+                        height: 90,
                         onSuccess: (){},
                         onFail: (){}
                     ),
@@ -261,35 +269,18 @@ class _signupState extends State<signup> {
                     SizedBox(
                       height: 30,
                     ),
-                    defaultButton(150.0, 50.0, 'SIGNUP', emailFieldKey, nameFiledKey: nameFieldKey)
+                    defaultButton(150.0, 50.0, 'SIGNUP',true, (){
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                        ),
+                        );
+                    })
                   ],
                 ),
               ),
               SizedBox(height: 20,),
-              Container(
-                height: size.height/10,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 13.0),
-                      child: Text("Don't have an account?",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 15,
-                            color: Colors.grey,)),
-                    ),
-                    SizedBox(width: 5,),
-                    TextButton(
-                        onPressed: (){},
-                        child: Text("Sign up",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 15,
-                              color: Colors.teal,))
-                    )
-                  ],
-                ),
-              ),
             ],
           ),
         ),

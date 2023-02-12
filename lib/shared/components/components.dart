@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Widget defaultButton(width, height, text, formFieldKey,{nameFiledKey}) => TextButton(
-    onPressed: (){
-      formFieldKey.currentState!.validate();
-      nameFiledKey.currentState!.validate();
-      },
+Widget defaultButton(width, height, text,arrow, fn) => TextButton(
+    onPressed: fn,
     child: Container(
       width: width,
       height: height,
@@ -24,7 +21,12 @@ Widget defaultButton(width, height, text, formFieldKey,{nameFiledKey}) => TextBu
                   color: Colors.white,
                   fontWeight: FontWeight.w500)),
           SizedBox(width: 20,),
-          Icon(Icons.arrow_forward,color: Colors.white,)
+          if(arrow)...[
+            Icon(Icons.arrow_forward,color: Colors.white,)
+          ]
+          else
+            Icon(Icons.logout_outlined,color: Colors.white),
+
         ],
       ),
     )

@@ -39,6 +39,16 @@ class AppointmentScreen extends StatelessWidget {
             'https://i.pinimg.com/564x/6c/b2/92/6cb292bb19398b280f4ca5ad0af94469.jpg',
         name: 'Dr. Cem Baysal',
         rating: 'Rating 4.8'),
+    DoctorModel(
+        imageUrl:
+        'https://i.pinimg.com/564x/6c/b2/92/6cb292bb19398b280f4ca5ad0af94469.jpg',
+        name: 'Dr. Cem Baysal',
+        rating: 'Rating 4.8'),
+    DoctorModel(
+        imageUrl:
+        'https://i.pinimg.com/564x/6c/b2/92/6cb292bb19398b280f4ca5ad0af94469.jpg',
+        name: 'Dr. Cem Baysal',
+        rating: 'Rating 4.8'),
   ];
 
   @override
@@ -46,11 +56,10 @@ class AppointmentScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Container(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
               padding: EdgeInsets.symmetric(vertical: 10),
               color: Colors.teal[300],
               child: Column(
@@ -58,46 +67,40 @@ class AppointmentScreen extends StatelessWidget {
                   SizedBox(
                     height: 64,
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16, vertical: 8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        // children: [
-                        //   Text(
-                        //       'Doctors',
-                        //     style: TextStyle(
-                        //         color: Colors.white,
-                        //       fontSize: 20.0,
-                        //       fontWeight: FontWeight.bold,
-                        //     ),
-                        //
-                        //   ),
-                        // ],
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(
+                  //       horizontal: 16, vertical: 8),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.start,
+                  //     crossAxisAlignment: CrossAxisAlignment.start,
+                  //     // children: [
+                  //     //   Text(
+                  //     //       'Doctors',
+                  //     //     style: TextStyle(
+                  //     //         color: Colors.white,
+                  //     //       fontSize: 20.0,
+                  //     //       fontWeight: FontWeight.bold,
+                  //     //     ),
+                  //     //
+                  //     //   ),
+                  //     // ],
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(32),
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(32),
-                        ),
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Center(
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: "Search",
-                              icon: Icon(
-                                Icons.search,
-                              ),
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Center(
+                        child: const TextField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: "Search",
+                            icon: Icon(
+                              Icons.search,
                             ),
                           ),
                         ),
@@ -108,36 +111,28 @@ class AppointmentScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-          Expanded(
-            flex: 7,
-            child: Padding(
+            Padding(
               padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ListView.separated(
-                      // physics: NeverScrollableScrollphysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) =>
-                          buildListItem(doctors[index]),
-                      separatorBuilder: (context, index) => Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: Container(
-                          width: double.infinity,
-                          height: 1.0,
-                          color: Colors.grey[300],
-                        ),
-                      ),
-
-                      itemCount: doctors.length,
-                    ),
+              child: ListView.separated(
+                physics:NeverScrollableScrollPhysics(),
+                // physics: NeverScrollableScrollphysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) =>
+                    buildListItem(doctors[index]),
+                separatorBuilder: (context, index) => Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  child: Container(
+                    width: double.infinity,
+                    height: 1.0,
+                    color: Colors.grey[300],
                   ),
-                ],
+                ),
+
+                itemCount: doctors.length,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

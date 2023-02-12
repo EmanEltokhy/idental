@@ -3,6 +3,12 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:iconly/iconly.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
+import 'package:idental/history.dart';
+import 'package:idental/login.dart';
+import 'package:idental/upload.dart';
+
+import '../profilePage.dart';
+import '../screens/appointment_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   //const HomeScreen({key? key}) : super(key: key);
@@ -11,30 +17,45 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _selectedScreenIndex = 0;
+  final List _screens = [
+    {"screen": UploadScreen()},
+    {"screen": AppointmentScreen()},
+    {"screen": HistoryScreen()},
+    {"screen": profileScreen()}
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedScreenIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        actions:<Widget> [
-          IconButton(
-              onPressed: (){},
-              icon: Icon(
-                Icons.notifications_outlined,
-                color: Colors.black38,
-
-              ),
-          ),
-          IconButton(
-            onPressed: (){},
-            icon: Icon(
-              IconlyLight.chat,
-              color: Colors.black,
-            ),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0.0,
+      //   actions:<Widget> [
+      //     IconButton(
+      //         onPressed: (){},
+      //         icon: Icon(
+      //           Icons.notifications_outlined,
+      //           color: Colors.black38,
+      //
+      //         ),
+      //     ),
+      //     IconButton(
+      //       onPressed: (){},
+      //       icon: Icon(
+      //         IconlyLight.chat,
+      //         color: Colors.black,
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      body: _screens[_selectedScreenIndex]["screen"],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -54,15 +75,17 @@ class _HomeScreenState extends State<HomeScreen> {
               activeColor: Colors.white,
               tabBackgroundColor: Colors.teal,
               gap: 8,
+              selectedIndex: _selectedScreenIndex,
+              onTabChange: _onItemTapped,
               padding: const EdgeInsets.symmetric(
                 horizontal: 15.0,
                 vertical: 10,
               ),
-              tabs: const [
+              tabs: [
                 GButton(
-                  icon: Icons.history,
+                  icon: Icons.home,
                   iconColor: Colors.black,
-                  text: 'History',
+                  text: 'Home',
                     ),
                 GButton(
                   icon: Icons.calendar_today,
@@ -70,11 +93,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: 'Appointment',
                 ),
                 GButton(
+                  icon: Icons.history,
+                  iconColor: Colors.black,
+                  text: 'History',
+                ),
+                GButton(
                   icon: Icons.person,
                   iconColor: Colors.black,
                   text: 'Profile',
                 ),
-
               ],
             ),
           ),

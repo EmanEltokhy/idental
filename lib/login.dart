@@ -3,6 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:idental/shared/components/components.dart';
+import 'package:idental/signup.dart';
+
+import 'layout/home_screen.dart';
 
 
 class Login extends StatefulWidget {
@@ -59,15 +62,24 @@ class _LoginState extends State<Login> {
                       children: [
                         Text("Login",
                             style: GoogleFonts.montserrat(
-                                fontSize: 35,
-                                fontWeight: FontWeight.bold,
-
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold,
+                              // shadows: [
+                              //   Shadow(
+                              //       color: Colors.grey.shade500,
+                              //       offset: Offset(3.0, 3.0),
+                              //       blurRadius: 3.0),
+                              //   Shadow(
+                              //       color: Colors.white,
+                              //       offset: Offset(-3.0, 3.0),
+                              //       blurRadius: 3.0),
+                              // ])
                             )),
                         SizedBox(height: 5,),
                         Text("please sign in to continue",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 15,
-                            color: Colors.grey,))
+                            style: GoogleFonts.montserrat(
+                              fontSize: 15,
+                              color: Colors.grey,))
                       ],
                     ),
                   )
@@ -160,21 +172,21 @@ class _LoginState extends State<Login> {
                           suffixIcon: Container(
                             width: 50,
                             alignment: AlignmentDirectional.center,
-                              child: Text("Forget",style: GoogleFonts.montserrat(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.teal),),
+                            child: Text("Forget",style: GoogleFonts.montserrat(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.teal),),
                           ),
                           suffix: IconButton(
                             icon: Icon(Icons.remove_red_eye,
-                              color: Colors.black),
-                              onPressed: ()=> setState(() {
-                                showPass = !showPass;
-                              }),
+                                color: Colors.black),
+                            onPressed: ()=> setState(() {
+                              showPass = !showPass;
+                            }),
                             alignment: AlignmentDirectional.bottomCenter,
                           ),
-                          ),
                         ),
+                      ),
                     ),
 
                     new FlutterPwValidator(
@@ -183,7 +195,7 @@ class _LoginState extends State<Login> {
                         uppercaseCharCount: 1,
                         specialCharCount: 1,
                         width: 400,
-                        height: 85,
+                        height: 90,
                         onSuccess: (){},
                         onFail: (){}
                     ),
@@ -220,7 +232,15 @@ class _LoginState extends State<Login> {
                     SizedBox(
                       height: 30,
                     ),
-                    defaultButton(150.0, 50.0, 'LOGIN', formFieldKey)
+                    defaultButton(150.0, 50.0, 'LOGIN', true, (){
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                      ),
+                      );
+                      }
+                    ),
                   ],
                 ),
               ),
@@ -240,7 +260,14 @@ class _LoginState extends State<Login> {
                     ),
                     SizedBox(width: 5,),
                     TextButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => signup(),
+                            ),
+                          );
+                        },
                         child: Text("Sign up",
                             style: GoogleFonts.montserrat(
                               fontSize: 15,

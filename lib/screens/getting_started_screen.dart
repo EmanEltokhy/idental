@@ -92,74 +92,36 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
               SizedBox(
                 height: 20,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+              defaultButton(250.0, 50.0, 'Create your account',true,(){Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (context) => signup(),
+              ),
+                 );}),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Material(
-                    borderRadius: BorderRadius.circular(
-                      50.0,
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => signup(),
-                        ),
-                        );
-                      },
-                      borderRadius: BorderRadius.circular(
-                        50.0,
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50.0),
-                          gradient: LinearGradient(colors: [
-                            Colors.teal,
-                            Color(0xFF80CBC4),
-                          ]),
-                        ),
-                        width: 200,
-                        height: 50,
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Create your account',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          ),
-                        ),
-                        
-                      ),
-
-                    ),
+                  Text(
+                    'Have an account?',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 15,
+                        color: Colors.grey),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Have an account?',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 15,
-                            color: Colors.grey),
-                      ),
-                      TextButton(
-                        child: Text(
-                          'Login',
-                            style: GoogleFonts.montserrat(
-                                color: Colors.teal,
-                                fontSize: 15),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Login(),
-                                  ),
-                          );
-                        },
-                      ),
-                    ],
+                  TextButton(
+                    child: Text(
+                      'Login',
+                        style: GoogleFonts.montserrat(
+                            color: Colors.teal,
+                            fontSize: 15),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Login(),
+                              ),
+                      );
+                    },
                   ),
                 ],
               )
