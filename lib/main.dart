@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:idental/layout/home_screen.dart';
+import 'package:idental/screens/appointment_screen.dart';
+import 'package:idental/screens/appoit_screen.dart';
+import 'package:idental/upload.dart';
 import './screens/getting_started_screen.dart';
 
 void main() {
@@ -20,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      // home: DoctorDetailPage(),
       home: GettingStartedScreen(),
     );
   }
