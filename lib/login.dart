@@ -91,35 +91,6 @@ class _LoginState extends State<Login> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    // Container(
-                    //   decoration: BoxDecoration(
-                    //     boxShadow:[BoxShadow(color: Colors.grey,blurRadius: 10)],
-                    //   ),
-                    //   child: TextFormField(
-                    //     style: GoogleFonts.montserrat(
-                    //         fontWeight: FontWeight.bold,
-                    //         color: Colors.black,
-                    //     ),
-                    //
-                    //     decoration: InputDecoration(
-                    //       fillColor: Colors.white,
-                    //       filled: true,
-                    //       labelText: 'EMAIL',
-                    //       labelStyle: GoogleFonts.montserrat(
-                    //           fontSize: 15,
-                    //           fontWeight: FontWeight.w400,
-                    //           color: Colors.grey),
-                    //       enabledBorder: OutlineInputBorder(
-                    //           borderRadius: BorderRadius.circular(5),
-                    //           borderSide:
-                    //           BorderSide(color: Colors.white)),
-                    //       border:
-                    //       UnderlineInputBorder(borderSide: BorderSide.none),
-                    //       prefixIcon: Icon(Icons.email_rounded,
-                    //           color: Colors.black),
-                    //     ),
-                    //   ),
-                    // ),
                     TextFormField(
                       style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.bold,
@@ -202,33 +173,6 @@ class _LoginState extends State<Login> {
                     SizedBox(
                       height: 30,
                     ),
-                    // Row(
-                    //   children: [
-                    //     Checkbox(
-                    //       value: checkBoxValue,
-                    //       onChanged: (bool? value) {
-                    //         setState(() {
-                    //           if (checkBoxValue == true) {
-                    //             checkBoxValue = false;
-                    //           } else {
-                    //             checkBoxValue = true;
-                    //           }
-                    //         });
-                    //       },
-                    //       activeColor: Color(0xff54ccf5),
-                    //     ),
-                    //     Text(
-                    //       'I agree to the terms and conditions',
-                    //       overflow: TextOverflow.fade,
-                    //       softWrap: true,
-                    //       style: GoogleFonts.montserrat(
-                    //           color: Colors.grey.shade600,
-                    //           fontWeight: FontWeight.w300,
-                    //           fontSize:14,
-                    //       ),
-                    //     )
-                    //   ],
-                    // ),
                     SizedBox(
                       height: 30,
                     ),
