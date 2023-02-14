@@ -25,11 +25,7 @@ Widget defaultButton(width, height, text,arrow, fn) => TextButton(
             Icon(Icons.arrow_forward,color: Colors.white,)
           ]
           else
-<<<<<<< HEAD
-              Icon(Icons.logout_outlined,color: Colors.white),
-=======
             Icon(Icons.logout_outlined,color: Colors.white),
->>>>>>> sara
 
         ],
       ),

@@ -269,18 +269,14 @@ class _signupState extends State<signup> {
                     SizedBox(
                       height: 30,
                     ),
-<<<<<<< HEAD
-                    defaultButton(150.0, 50.0, 'SIGNUP',true, (){})
-=======
                     defaultButton(150.0, 50.0, 'SIGNUP',true, (){
-                        Navigator.push(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
+                          builder: (context) => HomeScreen(),
                         ),
-                        );
+                      );
                     })
->>>>>>> sara
                   ],
                 ),
               ),
