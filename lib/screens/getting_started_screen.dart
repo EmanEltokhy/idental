@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:idental/login.dart';
-import 'package:idental/signup.dart';
+import 'package:idental/modules/login/login.dart';
+import 'package:idental/modules/signup/signup.dart';
 import '../widgets/slide_item.dart';
 import '../model/slide.dart';
 import '../widgets/slide_dots.dart';
@@ -95,7 +95,7 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
               defaultButton(250.0, 50.0, 'Create your account',true,(){Navigator.push(
               context,
               MaterialPageRoute(
-              builder: (context) => signup(),
+              builder: (context) => Signup(),
               ),
                  );}),
               Row(
