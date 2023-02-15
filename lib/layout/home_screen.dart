@@ -4,10 +4,10 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:iconly/iconly.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:idental/history.dart';
-import 'package:idental/login.dart';
+import 'package:idental/modules/login/login.dart';
 import 'package:idental/upload.dart';
 
-import '../profilePage.dart';
+import '../modules/profile/profilePage.dart';
 import '../screens/appointment_screen.dart';
 
 class HomeScreen extends StatefulWidget {
