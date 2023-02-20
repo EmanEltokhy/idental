@@ -19,10 +19,7 @@ class profileScreen extends StatefulWidget {
 }
 
 class _profileScreenState extends State<profileScreen> {
-<<<<<<< HEAD
-=======
 
->>>>>>> sara
   bool showPassword = false;
   bool edit = true;
   var nameController = TextEditingController();
@@ -33,10 +30,8 @@ class _profileScreenState extends State<profileScreen> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-=======
+
     Size size = MediaQuery.of(context).size;
->>>>>>> sara
     return Scaffold(
       // appBar: AppBar(
       //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -66,41 +61,6 @@ class _profileScreenState extends State<profileScreen> {
         child: ListView(
           children: [
             Row(
-<<<<<<< HEAD
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Icon(
-                  Icons.arrow_back_ios,
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Center(
-                  child: Text(
-                    "Edit Profile",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 25),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 1,
-                child: TextButton(
-                  child: Text("Edit",
-                  style: GoogleFonts.montserrat(
-                    fontSize: 20,
-                    color: Colors.teal,)),
-                onPressed: (){
-                    setState(() {
-                      edit=!edit;
-                    });
-                },),
-              ),
-            ]
-=======
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -137,7 +97,6 @@ class _profileScreenState extends State<profileScreen> {
                       },),
                   ),
                 ]
->>>>>>> sara
             ),
             SizedBox(
               height: 30,
@@ -201,11 +160,7 @@ class _profileScreenState extends State<profileScreen> {
             SizedBox(
               height: 35,
             ),
-<<<<<<< HEAD
-            defaultButton(150.0, 50.0, "Logout",false,(){
-=======
             defaultButton(size.width, 50.0, "Logout",false,(){
->>>>>>> sara
               print(nameController.text);
             })
           ],
@@ -222,7 +177,6 @@ class _profileScreenState extends State<profileScreen> {
         readOnly: edit,
         obscureText: isPasswordTextField ? showPassword : false,
         decoration: InputDecoration(
-<<<<<<< HEAD
           suffixIcon: isPasswordTextField?
             IconButton(
             onPressed: () {
@@ -234,34 +188,10 @@ class _profileScreenState extends State<profileScreen> {
               Icons.remove_red_eye,
               color: Colors.grey,
             ),
-=======
-            suffixIcon: isPasswordTextField?
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  showPassword = !showPassword;
-                });
-              },
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: Colors.grey,
-              ),
->>>>>>> sara
             ): null,
             contentPadding: EdgeInsets.only(bottom: 3),
             labelText: labelText,
             labelStyle: GoogleFonts.montserrat(
-<<<<<<< HEAD
-              fontSize: 15,
-              color: Colors.grey,
-            fontWeight: FontWeight.bold),
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: GoogleFonts.montserrat(
-              fontSize: 16,
-              color: Colors.black,
-            fontWeight: FontWeight.bold)),
-=======
                 fontSize: 15,
                 color: Colors.grey,
                 fontWeight: FontWeight.bold),
@@ -271,7 +201,6 @@ class _profileScreenState extends State<profileScreen> {
                 fontSize: 16,
                 color: Colors.black,
                 fontWeight: FontWeight.bold)),
->>>>>>> sara
       ),
     );
   }
