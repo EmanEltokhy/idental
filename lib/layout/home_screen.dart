@@ -21,8 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedScreenIndex = 0;
   final List _screens = [
     {"screen": UploadScreen()},
-    {"screen": AppointmentScreen()},
     {"screen": NewReport()},
+    {"screen": HistoryScreen()},
     {"screen": profileScreen()}
   ];
 
@@ -89,14 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: 'Home',
                     ),
                 GButton(
-                  icon: Icons.calendar_today,
+                  icon: Icons.add_card_outlined,
                   iconColor: Colors.black,
-                  text: 'Appointment',
+                  text: 'New Report',
                 ),
                 GButton(
                   icon: Icons.history,
                   iconColor: Colors.black,
-                  text: 'New Report',
+                  text: 'History',
                 ),
                 GButton(
                   icon: Icons.person,

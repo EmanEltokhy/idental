@@ -85,6 +85,81 @@ Widget defaultFormField({
       ),
     );
 
+Widget buildReportItem({
+  required context,
+  required String dentistname,
+  required String patientname,
+  required String observation,
+}) => Card(
+  clipBehavior: Clip.antiAliasWithSaveLayer,
+  elevation: 10.0,
+  margin: EdgeInsets.symmetric(
+    horizontal: 8.0,
+  ),
+  child: Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: Column(
+      children: [
+        Row(
+          children: [
+
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        '${dentistname}',
+                        style: TextStyle(
+                          height: 1.4,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5.0,
+                      ),
+
+                    ],
+                  ),
+                  Text(
+                    'Febrauray 20, 2023 at 11:00 pm',
+
+                  ),
+                ],
+              ),
+            ),
+
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 15.0,
+          ),
+          child: Container(
+            width: double.infinity,
+            height: 1.0,
+            color: Colors.grey[300],
+          ),
+        ),
+        Text(
+          'Patient Name: ${patientname}',
+
+
+        ),
+        SizedBox(width: 15.0,),
+        Text(
+          'Observation: ${observation}'
+        ),
+
+
+
+      ],
+    ),
+  ),
+);
+
+
+
 
 void navigateAndFinish(
     context,
@@ -134,6 +209,8 @@ Color chooseToastColor(ToastStates state) {
 
   return color;
 }
+
+
 
 // Widget buildTextField(String labelText, String placeholder, bool isPasswordTextField) {
 //   return Padding(
