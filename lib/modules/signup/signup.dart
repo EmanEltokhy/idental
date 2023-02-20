@@ -18,6 +18,8 @@ class Signup extends StatelessWidget {
   final GlobalKey<FormFieldState> emailFieldKey = GlobalKey();
   final GlobalKey<FormFieldState> nameFieldKey = GlobalKey();
   final GlobalKey<FormFieldState> phoneFieldKey = GlobalKey();
+  final GlobalKey<FormFieldState> medicalFieldKey = GlobalKey();
+  final GlobalKey<FormFieldState> socialFieldKey = GlobalKey();
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -111,7 +113,7 @@ class Signup extends StatelessWidget {
                                 color: Colors.black),
                             controller: medicalIdController,
                             validate: (value) {
-                              if(nameController.text.isEmpty)
+                              if(medicalIdController.text.isEmpty)
                                 return 'Name is required';
                               else
                                 null;
@@ -119,9 +121,9 @@ class Signup extends StatelessWidget {
                             onSubmit: (value){
                               nameFieldKey.currentState!.validate();
                             },
-                            key: nameFieldKey,
+                            key: medicalFieldKey,
 
-                            type: TextInputType.name,
+                            type: TextInputType.phone,
                             label: 'Medical Id',
                             prefix: Icons.add_card_sharp,
                           ),
@@ -135,15 +137,15 @@ class Signup extends StatelessWidget {
                                 color: Colors.black),
                             controller: socialNumberController,
                             validate: (value) {
-                              if(nameController.text.isEmpty)
+                              if(socialNumberController.text.isEmpty)
                                 return 'Name is required';
                               else
                                 null;
                             },
                             onSubmit: (value){
-                              nameFieldKey.currentState!.validate();
+                              socialFieldKey.currentState!.validate();
                             },
-                            key: nameFieldKey,
+                            key: socialFieldKey,
 
                             type: TextInputType.phone,
                             label: 'Social Number',
