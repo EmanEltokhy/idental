@@ -160,16 +160,6 @@ class Login extends StatelessWidget {
                                 } ),
                           ),
 
-                          new FlutterPwValidator(
-                              controller: passwordController,
-                              minLength: 6,
-                              uppercaseCharCount: 1,
-                              specialCharCount: 1,
-                              width: 400,
-                              height: 90,
-                              onSuccess: (){},
-                              onFail: (){}
-                          ),
                           SizedBox(
                             height: 30,
                           ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idental/layout/home_screen.dart';
+import 'package:idental/modules/report/new_report.dart';
 import 'package:idental/screens/appointment_screen.dart';
 import 'package:idental/screens/appoit_screen.dart';
 import 'package:idental/shared/bloc_observer.dart';
@@ -29,9 +30,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
-      // home: DoctorDetailPage(),
+
       home: GettingStartedScreen(),
     );
   }

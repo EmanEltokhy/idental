@@ -43,14 +43,14 @@ Widget defaultFormField({
   bool isPassword = false,
  String? Function(String?)? validate,
   required String label,
-  required IconData prefix,
+  IconData? prefix,
   IconData? suffix,
   Function? suffixPressed,
   bool isClickable = true,
   TextStyle? style,
   GlobalKey<FormFieldState>? key,
   FloatingLabelBehavior? floatingLabelBehavior,
-  String? intialvalue,
+
 
 
 
@@ -63,7 +63,7 @@ Widget defaultFormField({
       //     fontWeight: FontWeight.bold
       //
       // ),
-      initialValue: intialvalue,
+
       controller: controller,
       keyboardType: type,
       obscureText: isPassword,

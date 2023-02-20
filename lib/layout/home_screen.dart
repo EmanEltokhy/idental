@@ -5,6 +5,7 @@ import 'package:iconly/iconly.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:idental/history.dart';
 import 'package:idental/modules/login/login.dart';
+import 'package:idental/modules/report/new_report.dart';
 import 'package:idental/upload.dart';
 
 import '../modules/profile/profilePage.dart';
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List _screens = [
     {"screen": UploadScreen()},
     {"screen": AppointmentScreen()},
-    {"screen": HistoryScreen()},
+    {"screen": NewReport()},
     {"screen": profileScreen()}
   ];
 
@@ -95,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 GButton(
                   icon: Icons.history,
                   iconColor: Colors.black,
-                  text: 'History',
+                  text: 'New Report',
                 ),
                 GButton(
                   icon: Icons.person,

@@ -21,7 +21,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
 
   }) {
 
-    print('hello');
+
     emit(RegisterLoadingState());
 
     FirebaseAuth.instance.createUserWithEmailAndPassword(
