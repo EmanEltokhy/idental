@@ -101,23 +101,40 @@ class AppCubit extends Cubit<AppStates> {
 
   }
 
-  void uploadProfileImage({
+  Future<void> uploadProfileImage({
     required String name,
     required String phone,
     required String clinic_name,
     required String clinic_address,
 
 
-}){
+}) async {
   if(profileimage!=null){
     // upload image only if there is file
     emit(UpdateDentistDataLoadingState());
 
-    FirebaseStorage.instance
-        .ref().child('Dentists/${Uri.file(profileimage.path).pathSegments.last}')
-        .putFile(profileimage!).then((value){
+    // FirebaseStorage.instance
+    //     .ref().child('Dentists/${Uri.file(profileimage.path).pathSegments.last}')
+    //     .putFile(profileimage!).then((value){
+    //       print('upload result ${value.ref.fullPath}');
+    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
 
-          print('upload result ${value.ref.fullPath}');
+    Reference referenceRoot = FirebaseStorage.instance.ref();
+    Reference referenceDirImages = referenceRoot.child('profileimages');
+    Reference referenceImageToUpload =referenceDirImages.child(uniqueFileName);
+    try{
+    await referenceImageToUpload.putFile(File(profileimage.path));
+     String url = await referenceImageToUpload.getDownloadURL();
+    editData(name: name,
+            phone: phone,
+            clinic_name: clinic_name,
+            clinic_address: clinic_address,
+            profile_image: url,);
+
+        }
+    catch (error){
+
+    }
       // value.ref.getDownloadURL().then((value) {
       //   print(value);
       //   editData(name: name,
@@ -130,9 +147,9 @@ class AppCubit extends Cubit<AppStates> {
       //   emit(UpdateDentistDataErrorState(error.toString()));
       // });
 
-    }).catchError((error){
-      emit(UpdateDentistDataErrorState(error.toString()));
-    });
+    // // ).catchError((error){
+    // //   emit(UpdateDentistDataErrorState(error.toString()));
+    // });
   }else{
     emit(UpdateDentistDataLoadingState());
     editData(name: name,
@@ -246,19 +263,17 @@ ReportModel rr =ReportModel();
 //
 //   }
 //--------------------------------------------------------------
-  Map<String, dynamic> Allreports= {};
+
   void getReports(){
+    List<Map<String, dynamic>> Allreports= [];
         final userid = FirebaseAuth.instance.currentUser!.uid;
     var collection = FirebaseFirestore.instance.collection('Reports');
     collection.where('uId', isEqualTo:userid ).snapshots().listen((querySnapshot) {
       for (var doc in querySnapshot.docs) {
-print(querySnapshot.docs.length);
+        Allreports.add(doc.data());
 
-        Allreports= doc.data();
-
-        print(Allreports);
       }
-      print(Allreports.length);
+
         emit(GetReportSuccessState(Allreports));
 
     });

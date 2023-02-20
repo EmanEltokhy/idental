@@ -54,13 +54,14 @@ class HistoryScreen extends StatelessWidget {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) => buildReportItem(context:context,
-                          dentistname: state.reports['dentistname'],
-                          patientname: state.reports['patientname'],
-                          observation: state.reports['observation']),
+                          dentistname: state.reports[index]['dentistname'],
+                          patientname: state.reports[index]['patientname'],
+                          observation: state.reports[index]['observation']),
                           separatorBuilder: (context, index) => SizedBox(
                             height: 20.0,
-                          ),
-                          itemCount: AppCubit.get(context).Allreports.length,
+                           ),
+
+                          itemCount: state.reports.length,
                         ),
 
                       ], )

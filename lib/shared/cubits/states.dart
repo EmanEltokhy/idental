@@ -48,7 +48,7 @@ class CreateReportErrorState extends AppStates{
   CreateReportErrorState(this.error);
 }
 class  GetReportSuccessState extends AppStates{
-  final  Map<String, dynamic> reports;
+  List<Map<String, dynamic>> reports;
   GetReportSuccessState(this.reports);
 }
 class GetReportErrorState extends AppStates{
