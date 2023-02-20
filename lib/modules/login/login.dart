@@ -25,8 +25,8 @@ class Login extends StatelessWidget {
       child: BlocConsumer<LoginCubit,LoginStates>(
         listener: (context, state){
           if(state is LoginErorrState){
-            showToast(text: state.error,
-                state: ToastStates.ERROR);
+            // showToast(text: state.error,
+            //     state: ToastStates.ERROR);
           }
           else if(state is LoginSuccessState){
             navigateAndFinish(context, HomeScreen());

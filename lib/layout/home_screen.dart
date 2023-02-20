@@ -7,8 +7,11 @@ import 'package:idental/history.dart';
 import 'package:idental/modules/login/login.dart';
 import 'package:idental/upload.dart';
 
-import '../modules/profile/profilePage.dart';
+// import '../modules/profile/profilePage.dart';
+import '../profilePage.dart';
 import '../screens/appointment_screen.dart';
+import '../tabbarPage.dart';
+import '../try.dart';
 
 class HomeScreen extends StatefulWidget {
   //const HomeScreen({key? key}) : super(key: key);
@@ -20,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedScreenIndex = 0;
   final List _screens = [
     {"screen": UploadScreen()},
-    {"screen": AppointmentScreen()},
+    {"screen": TabBarPage()},
     {"screen": HistoryScreen()},
     {"screen": profileScreen()}
   ];

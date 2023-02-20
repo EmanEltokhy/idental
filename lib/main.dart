@@ -7,6 +7,7 @@ import 'package:idental/layout/home_screen.dart';
 import 'package:idental/screens/appointment_screen.dart';
 import 'package:idental/screens/appoit_screen.dart';
 import 'package:idental/shared/bloc_observer.dart';
+import 'package:idental/tabbarPage.dart';
 import 'package:idental/upload.dart';
 import './screens/getting_started_screen.dart';
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: DoctorDetailPage(),
+      // home: TabBarPage(),
       home: GettingStartedScreen(),
     );
   }

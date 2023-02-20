@@ -2,6 +2,7 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
@@ -16,16 +17,15 @@ class Signup extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   final GlobalKey<FormFieldState> emailFieldKey = GlobalKey();
   final GlobalKey<FormFieldState> nameFieldKey = GlobalKey();
+  final GlobalKey<FormFieldState> phoneFieldKey = GlobalKey();
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmedPassController = TextEditingController();
+  var medicalIdController = TextEditingController();
+  var socialNumberController = TextEditingController();
+  var phoneNumberController = TextEditingController();
 
-  // bool showPass = true;
-  //
-  // // FocusNode? passwordFocus;
-  // bool confShowPass = true;
-  // FocusNode? confPasswordFocus;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,9 @@ class Signup extends StatelessWidget {
     return BlocProvider(create: (BuildContext context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterStates>(
         listener: (context, state){
-if(state is CreateDentistSucessState){
-  navigateAndFinish(context, HomeScreen());
-}
-
+      if(state is CreateDentistSucessState){
+        navigateAndFinish(context, HomeScreen());
+      }
         },
         builder: (context,state){
           return SafeArea(
@@ -99,8 +98,82 @@ if(state is CreateDentistSucessState){
                             key: nameFieldKey,
 
                             type: TextInputType.name,
-                            label: 'NAME',
+                            label: 'Name',
                             prefix: Icons.person,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          defaultFormField(
+
+                            style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                            controller: medicalIdController,
+                            validate: (value) {
+                              if(nameController.text.isEmpty)
+                                return 'Name is required';
+                              else
+                                null;
+                            },
+                            onSubmit: (value){
+                              nameFieldKey.currentState!.validate();
+                            },
+                            key: nameFieldKey,
+
+                            type: TextInputType.name,
+                            label: 'Medical Id',
+                            prefix: Icons.add_card_sharp,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          defaultFormField(
+
+                            style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                            controller: socialNumberController,
+                            validate: (value) {
+                              if(nameController.text.isEmpty)
+                                return 'Name is required';
+                              else
+                                null;
+                            },
+                            onSubmit: (value){
+                              nameFieldKey.currentState!.validate();
+                            },
+                            key: nameFieldKey,
+
+                            type: TextInputType.phone,
+                            label: 'Social Number',
+                            prefix: Icons.account_box_sharp,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          defaultFormField(
+
+                            style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                            controller: phoneNumberController,
+                            validate: (value) {
+                              if(value!.isEmpty){
+                                return 'Please Enter a Phone Number';
+                              }
+                              else if(!RegExp(r'^01[0125][0-9]{8}').hasMatch(value))
+                              {
+                                return 'Please Enter a Valid Phone Number';
+                              }
+                            },
+                            onSubmit: (value){
+                              phoneFieldKey.currentState!.validate();
+                            },
+                            key: phoneFieldKey,
+                            type: TextInputType.phone,
+                            label: 'Phone Number',
+                            prefix: Icons.phone,
                           ),
                           SizedBox(
                             height: 10,
@@ -115,13 +188,14 @@ if(state is CreateDentistSucessState){
                               onSubmit: (value){
                                 emailFieldKey.currentState!.validate();
                               },
-                              validate: (value) => EmailValidator.validate(emailController.text)?null : "Please enter a valid email",
-                              label: 'EMAIL',
+                              validate: (value) =>EmailValidator.validate(emailController.text)?null : "Please enter a valid email",
+                              label: 'Email',
                               prefix: Icons.email_outlined
                           ),
                           SizedBox(
                             height: 10,
                           ),
+
                           Container(
                             height: 60,
                             child:
@@ -202,6 +276,7 @@ if(state is CreateDentistSucessState){
                           SizedBox(
                             height: 30,
                           ),
+
                           Row(
                             children: [
                               Checkbox(
@@ -263,7 +338,6 @@ if(state is CreateDentistSucessState){
                       ),
                     ),
                     SizedBox(height: 20,),
-
                   ],
                 ),
               ),
