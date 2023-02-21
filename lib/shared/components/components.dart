@@ -45,11 +45,12 @@ Widget defaultFormField({
   required String label,
   IconData? prefix,
   IconData? suffix,
-  Function? suffixPressed,
+ void Function()? suffixPressed,
   bool isClickable = true,
   TextStyle? style,
   GlobalKey<FormFieldState>? key,
   FloatingLabelBehavior? floatingLabelBehavior,
+
 
 
 
@@ -63,7 +64,6 @@ Widget defaultFormField({
       //     fontWeight: FontWeight.bold
       //
       // ),
-
       controller: controller,
       keyboardType: type,
       obscureText: isPassword,
@@ -82,7 +82,14 @@ Widget defaultFormField({
             borderSide: BorderSide(color: Colors.grey)),
         prefixIcon: Icon(prefix,
             color: Colors.black),
+suffixIcon: suffix!= null?
+IconButton(onPressed: suffixPressed,
+    icon: Icon(suffix,
+    color: Colors.black,),) : null,
+
       ),
+
+
     );
 
 Widget buildReportItem({

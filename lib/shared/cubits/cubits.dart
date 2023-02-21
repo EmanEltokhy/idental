@@ -230,40 +230,6 @@ ReportModel rr =ReportModel();
 
 
 
-//   void getReports() {
-
-//     FirebaseFirestore.instance.collection('Reports').where('uId', isEqualTo: userid)
-//         .get().then((value) {
-// value.docs.forEach((element) {
-//   reports.add(ReportModel.fromdoc(element.data()));
-//   print(reports);
-// });
-//    emit(GetReportSuccessState()); }).catchError((error){
-//      emit(GetReportErrorState(error.toString()));
-//     });
-//   }
-
-
-
-//   CollectionReference _collectionRef =
-//   FirebaseFirestore.instance.collection('Reports');
-//
-//   Future<void> getReports() async {
-//     List<ReportModel> reports =[];
-//     // Get docs from collection reference
-//     final userid = FirebaseAuth.instance.currentUser!.uid;
-//     QuerySnapshot querySnapshot = await _collectionRef.where('uId', isEqualTo: userid).get();
-//
-//     // Get data from docs and convert map to List
-//     final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-//     //
-//     // final allData = querySnapshot.docs.
-//   print(allData.length);
-//
-//
-//   }
-//--------------------------------------------------------------
-
   void getReports(){
     List<Map<String, dynamic>> Allreports= [];
         final userid = FirebaseAuth.instance.currentUser!.uid;

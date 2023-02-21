@@ -24,6 +24,7 @@ class LoginCubit extends Cubit<LoginStates> {
 
   IconData suffix = Icons.visibility_outlined;
 
+
   bool isPassword = true;
 
   void changePasswordVisibility() {
