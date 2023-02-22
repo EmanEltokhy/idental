@@ -107,10 +107,16 @@ class NewReport extends StatelessWidget {
                   height: 30,
                 ),
 
-                defaultFormField(
+                TextFormField(
+
                   controller: patientnameController,
-                  type: TextInputType.text,
-                  label: "Patient Name",
+                  decoration: InputDecoration(
+                    labelStyle: GoogleFonts.montserrat(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey),
+                    hintText: 'Patien Name',
+                ),
                 ),
                 SizedBox(
                   height: 15,

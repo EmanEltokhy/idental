@@ -2,6 +2,9 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
@@ -16,10 +19,16 @@ class Signup extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   final GlobalKey<FormFieldState> emailFieldKey = GlobalKey();
   final GlobalKey<FormFieldState> nameFieldKey = GlobalKey();
+
+  final GlobalKey<FormFieldState> phoneFieldKey = GlobalKey();
+  final GlobalKey<FormFieldState> medicalFieldKey = GlobalKey();
+  final GlobalKey<FormFieldState> socialFieldKey = GlobalKey();
+
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmedPassController = TextEditingController();
+
 
   // bool showPass = true;
   //
@@ -27,15 +36,27 @@ class Signup extends StatelessWidget {
   // bool confShowPass = true;
   // FocusNode? confPasswordFocus;
 
+  var medicalIdController = TextEditingController();
+  var socialNumberController = TextEditingController();
+  var phoneNumberController = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return BlocProvider(create: (BuildContext context) => RegisterCubit(),
       child: BlocConsumer<RegisterCubit, RegisterStates>(
         listener: (context, state){
+
 if(state is CreateDentistSucessState){
   navigateAndFinish(context, HomeScreen());
 }
+
+
+      if(state is CreateDentistSucessState){
+        navigateAndFinish(context, HomeScreen());
+      }
 
         },
         builder: (context,state){
@@ -87,55 +108,182 @@ if(state is CreateDentistSucessState){
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                             controller: nameController,
-                            validate: (value) {
-                              if(nameController.text.isEmpty)
-                                return 'Name is required';
-                              else
-                                null;
-                            },
+                            // validate: (value) {
+                            //   if(nameController.text.isEmpty)
+                            //     return 'Name is required';
+                            //   else
+                            //     null;
+                            // },
                             onSubmit: (value){
                               nameFieldKey.currentState!.validate();
                             },
                             key: nameFieldKey,
 
                             type: TextInputType.name,
-                            label: 'NAME',
+
+
+                            label: 'Name',
                             prefix: Icons.person,
                           ),
                           SizedBox(
                             height: 10,
                           ),
                           defaultFormField(
-                              type: TextInputType.emailAddress,
-                              style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                              key: emailFieldKey,
-                              controller: emailController,
-                              onSubmit: (value){
-                                emailFieldKey.currentState!.validate();
-                              },
-                              validate: (value) => EmailValidator.validate(emailController.text)?null : "Please enter a valid email",
-                              label: 'EMAIL',
-                              prefix: Icons.email_outlined
+
+
+                            style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                            controller: medicalIdController,
+                            validate: (value) {
+                              if(medicalIdController.text.isEmpty)
+                                return 'Medical ID is required';
+                              else
+                                null;
+                            },
+                            onSubmit: (value){
+                              nameFieldKey.currentState!.validate();
+                            },
+                            key: medicalFieldKey,
+
+                            type: TextInputType.phone,
+                            label: 'Medical Id',
+                            prefix: Icons.add_card_sharp,
                           ),
                           SizedBox(
                             height: 10,
                           ),
+                          StreamBuilder(
+                            stream:BlocProvider.of<RegisterCubit>(context).socialnumberStream,
+                            builder: (context, snapshot) {
+                              return Padding(
+
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    defaultFormField(
+
+                                      style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                      controller: socialNumberController,
+
+                                      onSubmit: (value) {
+                                        socialFieldKey.currentState!.validate();
+                                      },
+
+                                      onChange: (value){
+                                        BlocProvider.of<RegisterCubit>(context).updateSocialNumber(value);
+                                      },
+                                      key: socialFieldKey,
+
+                                      type: TextInputType.phone,
+                                      label: 'Social Number',
+                                      prefix: Icons.account_box_sharp,
+                                    ),
+                                    snapshot.hasError? getErrorText(snapshot.error.toString())
+                                        : SizedBox(
+                                      height: 0.0,
+                                    )
+                                  ],
+
+                                ),);
+                            },),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          StreamBuilder(
+                            stream: BlocProvider.of<RegisterCubit>(context).phoneNumberStream,
+                            builder: (context, snapshot) {
+                              return Padding(
+
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column (
+                                  children: [
+                                    defaultFormField(
+
+                                      style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                      controller: phoneNumberController,
+                                      // validate: (value) {
+                                      //   if(value!.isEmpty){
+                                      //     return 'Please Enter a Phone Number';
+                                      //   }
+                                      //   else if(!RegExp(r'^01[0125][0-9]{8}').hasMatch(value))
+                                      //   {
+                                      //     return 'Please Enter a Valid Phone Number';
+                                      //   }
+                                      // },
+                                      onSubmit: (value){
+                                        phoneFieldKey.currentState!.validate();
+                                      },
+                                      onChange: (value){
+                                        BlocProvider.of<RegisterCubit>(context).updatePhone(value);
+                                        },
+                                      key: phoneFieldKey,
+                                      type: TextInputType.phone,
+                                      label: 'Phone Number',
+                                      prefix: Icons.phone,
+
+                                    ),
+                                    snapshot.hasError? getErrorText(snapshot.error.toString())
+                                        : SizedBox(
+                                      height: 0.0,
+                                    )
+                                  ],
+                                ),
+
+
+                              );
+
+                              }
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          StreamBuilder(
+                              stream:BlocProvider.of<RegisterCubit>(context).emailStream,
+                              builder: (context, snapshot) {
+                                return Padding(
+
+                                    padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                children: [
+                                  defaultFormField(
+                                      type: TextInputType.emailAddress,
+                                      style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                      key: emailFieldKey,
+                                      controller: emailController,
+                                      onSubmit: (value){
+                                        emailFieldKey.currentState!.validate();
+                                      },
+                                     onChange: (value){BlocProvider.of<RegisterCubit>(context).updateEmail(value);} ,
+                                      label: 'EMAIL',
+
+                                      prefix: Icons.email_outlined
+                                  ),
+                                  snapshot.hasError? getErrorText(snapshot.error.toString())
+                                      : SizedBox(
+                                    height: 0.0,
+                                  )
+                                ],
+                                ), );
+                            }
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+
+
                           Container(
                             height: 60,
                             child:
                             defaultFormField(
                               // obscureText: showPass,
                               controller: passwordController,
-                              // focusNode: ,
-                              // onTap: (){
-                              //   setState(() {
-                              //     FocusScope.of(context).unfocus();
-                              //     FocusScope.of(context).requestFocus(passwordFocus);
-                              //
-                              //   });
-                              // },
                               type: TextInputType.visiblePassword,
                               style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
@@ -169,13 +317,7 @@ if(state is CreateDentistSucessState){
                             child: defaultFormField(
                               type:TextInputType.visiblePassword,
                               controller: confirmedPassController,
-                              // focusNode: RegisterCubit.get(context).confpasswordFocus,
-                              // onTap: (){
-                              //   setState(() {
-                              //     FocusScope.of(context).unfocus();
-                              //     FocusScope.of(context).requestFocus(confPasswordFocus);
-                              //   });
-                              // },
+
                               style: GoogleFonts.montserrat(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black),
@@ -202,6 +344,7 @@ if(state is CreateDentistSucessState){
                           SizedBox(
                             height: 30,
                           ),
+
                           Row(
                             children: [
                               Checkbox(
@@ -235,7 +378,10 @@ if(state is CreateDentistSucessState){
                                   RegisterCubit.get(context).DentistRegister(
                                       name: nameController.text,
                                       email: emailController.text,
-                                      password: passwordController.text);
+                                      password: passwordController.text,
+                                  medicalID: medicalIdController.text,
+                                  phone: phoneNumberController.text,
+                                  socialnumber: socialNumberController.text,);
                                 }
                                 // Navigator.push(
                                 //   context,

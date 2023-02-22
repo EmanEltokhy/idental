@@ -17,9 +17,8 @@ class GetDentistDataErrorState extends AppStates{
   GetDentistDataErrorState(this.error);
 }
 
-class ProfileImagePickedSuccessState extends AppStates{
+class ProfileImagePickedSuccessState extends AppStates{}
 
-}
 class ProfileImagePickedErrorState extends AppStates{}
 
 // class UploadProfileImageSuccessState extends AppStates {}

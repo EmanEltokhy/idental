@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idental/model/DentistModel.dart';
 import 'package:idental/modules/signup/cubit/states.dart';
+import 'package:rxdart/rxdart.dart';
+
 
 class RegisterCubit extends Cubit<RegisterStates> {
   RegisterCubit() : super(RegisterInitalState());
@@ -15,11 +17,12 @@ class RegisterCubit extends Cubit<RegisterStates> {
     required String name,
     required String email,
     required String password,
-    // required String phone,
-    // required String socialnumber,
-    // required String medicalID,
+    required String phone,
+    required String socialnumber,
+    required String medicalID,
 
   }) {
+
 
 
     emit(RegisterLoadingState());
@@ -35,12 +38,12 @@ class RegisterCubit extends Cubit<RegisterStates> {
           emit(RegisterSucessState());
       DentistCreate(
         uId: value.user!.uid,
-        // medicalID: value.user!.uid,
+        medicalID: medicalID,
         name: name,
         email: email,
-        // phone: phone,
+        phone: phone,
 
-        // socialnumber:socialnumber,
+        socialnumber:socialnumber,
 
       );
     }).catchError((error) {
@@ -51,20 +54,20 @@ class RegisterCubit extends Cubit<RegisterStates> {
   void DentistCreate({
     required String name,
     required String email,
-    // required String phone,
+    required String phone,
      required String uId,
 
-    // required String socialnumber,
-    // required String medicalID,
+    required String socialnumber,
+    required String medicalID,
   }) {
     DentistModel model = DentistModel(
       name: name,
       email: email,
-      // phone: phone,
+      phone: phone,
       uId :uId,
 
-      // socialnumber:socialnumber,
-      // medicalID: medicalID,
+      socialnumber:socialnumber,
+      medicalID: medicalID,
         );
 
     FirebaseFirestore.instance
@@ -91,18 +94,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
 
     emit(ChangePasswordVisibilityState());
   }
- //  FocusNode? passwordFocus;
- //  void onFocus(context){
- //  FocusScope.of(context).unfocus();
- //  FocusScope.of(context as BuildContext).requestFocus(passwordFocus);
- //  emit(FocusOnPasswordState());
- //
- //  }
- //  FocusNode? confpasswordFocus;
- // void onFocusConf(context){
- //  FocusScope.of(context).unfocus();
- //  FocusScope.of(context).requestFocus(confpasswordFocus);
- //  }
+
   bool checkBoxValue = false;
   void ChangeCheckBox(){
   if (checkBoxValue == true) {
@@ -111,6 +103,56 @@ class RegisterCubit extends Cubit<RegisterStates> {
   checkBoxValue = true;
   }
   emit(ChangeCheckBoxState());
+  }
+
+  var _phoneNumberController = BehaviorSubject<String>();
+  Stream<String> get phoneNumberStream => _phoneNumberController.stream;
+
+  updatePhone(String text) {
+    if (text.length != 11 ) {
+      _phoneNumberController.sink.addError("Please enter a valid phone number here");
+    } else if(!RegExp(r'^(:01[0125])[0-9]{10}$').hasMatch(text)){
+      _phoneNumberController.sink.addError("Please enter a valid phone number here");
+    }
+    else {
+      _phoneNumberController.sink.add(text);
+    }
+  }
+
+
+  var _socialnumberController = BehaviorSubject<String>();
+  Stream<String> get socialnumberStream => _socialnumberController.stream;
+
+  updateSocialNumber(String text) {
+    if (text.length != 14 ) {
+      _socialnumberController.sink.addError("Please enter your 14 digit phone number here");
+    } else {
+      _socialnumberController.sink.add(text);
+    }
+
+
+
+  }
+
+
+  var _emailController = BehaviorSubject<String>();
+  Stream<String> get emailStream => _emailController.stream;
+
+
+  updateEmail(String text) {
+    if (text.isEmpty ||
+        !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(text)){
+      _emailController.sink.addError('Please enter valid email');
+
+    }
+    else{
+      _emailController.sink.add(text);
+    }
+  }
+  void onNext(){
+    print("Phone number = " + _phoneNumberController.value.toString());
+
   }
 
 

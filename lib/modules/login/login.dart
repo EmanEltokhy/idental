@@ -27,6 +27,8 @@ class Login extends StatelessWidget {
           if(state is LoginErorrState){
             showToast(text: state.error,
                 state: ToastStates.ERROR);
+            // showToast(text: state.error,
+            //     state: ToastStates.ERROR);
           }
           else if(state is LoginSuccessState){
             navigateAndFinish(context, HomeScreen());
@@ -160,36 +162,20 @@ class Login extends StatelessWidget {
                                 } ),
                           ),
 
+                          // new FlutterPwValidator(
+                          //     controller: passwordController,
+                          //     minLength: 6,
+                          //     uppercaseCharCount: 1,
+                          //     specialCharCount: 1,
+                          //     width: 400,
+                          //     height: 90,
+                          //     onSuccess: (){},
+                          //     onFail: (){}
+                          // ),
                           SizedBox(
                             height: 30,
                           ),
-                          // Row(
-                          //   children: [
-                          //     Checkbox(
-                          //       value: checkBoxValue,
-                          //       onChanged: (bool? value) {
-                          //         setState(() {
-                          //           if (checkBoxValue == true) {
-                          //             checkBoxValue = false;
-                          //           } else {
-                          //             checkBoxValue = true;
-                          //           }
-                          //         });
-                          //       },
-                          //       activeColor: Color(0xff54ccf5),
-                          //     ),
-                          //     Text(
-                          //       'I agree to the terms and conditions',
-                          //       overflow: TextOverflow.fade,
-                          //       softWrap: true,
-                          //       style: GoogleFonts.montserrat(
-                          //           color: Colors.grey.shade600,
-                          //           fontWeight: FontWeight.w300,
-                          //           fontSize:14,
-                          //       ),
-                          //     )
-                          //   ],
-                          // ),
+
                           SizedBox(
                             height: 30,
                           ),

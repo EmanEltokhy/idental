@@ -70,9 +70,7 @@ class AppCubit extends Cubit<AppStates> {
 
       }
     })
-    //  model = DentistModel.fromjson(value.data());
-    //  emit(GetDentistDataSuccessState());
-    //  })
+
         .catchError((error) {
       emit(GetDentistDataErrorState(error.toString()));
     }
@@ -90,6 +88,7 @@ class AppCubit extends Cubit<AppStates> {
       print(profileimage.path);
       model=model.copyWith(profileimage: profileimage.path);
       print(model.profileimage);
+      emit(ProfileImagePickedSuccessState());
       emit(GetDentistDataSuccessState(dentist: model));
 
     }
@@ -106,6 +105,8 @@ class AppCubit extends Cubit<AppStates> {
     required String phone,
     required String clinic_name,
     required String clinic_address,
+    required String socialnumber,
+    required String medicalID,
 
 
 }) async {
@@ -129,7 +130,10 @@ class AppCubit extends Cubit<AppStates> {
             phone: phone,
             clinic_name: clinic_name,
             clinic_address: clinic_address,
-            profile_image: url,);
+      socialnumber: socialnumber,
+      medicalID: medicalID,
+      profile_image: url,
+    );
 
         }
     catch (error){
@@ -156,7 +160,10 @@ class AppCubit extends Cubit<AppStates> {
       phone: phone,
       clinic_name: clinic_name,
       clinic_address: clinic_address,
+      socialnumber: socialnumber,
+      medicalID: medicalID,
       );
+
   }
 
 }
@@ -167,6 +174,8 @@ class AppCubit extends Cubit<AppStates> {
     required String phone,
     required String clinic_name,
     required String clinic_address,
+    required String socialnumber,
+    required String medicalID,
     String? profile_image,
 
   }){
@@ -176,10 +185,10 @@ class AppCubit extends Cubit<AppStates> {
       phone: phone,
       clinicname: clinic_name,
       clinicaddress: clinic_address,
-      profileimage: profile_image,
+      profileimage: profile_image??model.profileimage,
       email: model.email,
-      medicalID: model.medicalID,
-      socialnumber: model.socialnumber,
+      medicalID: medicalID,
+      socialnumber: socialnumber,
       uId: model.uId,
       docid: model.docid,
     );

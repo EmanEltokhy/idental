@@ -32,42 +32,42 @@ class DentistModel {
   factory DentistModel.fromdoc(QueryDocumentSnapshot<Map<String, dynamic>> doc){
 
     final dentist =DentistModel(
-        name :doc.data()!['name'],
-        email :doc.data()!['email'],
-        phone :doc.data()!['phone'],
-        medicalID :doc.data()!['medicalID'],
-        socialnumber :doc.data()!['socialnumber'],
-       clinicname: doc.data()!['clinicname'],
-        clinicaddress: doc.data()!['clinicaddress'],
-        uId :doc.data()!['uId'],
-        docid :doc.id,
-    profileimage: doc.data()!['profileimage'],
+      name :doc.data()!['name'],
+      email :doc.data()!['email'],
+      phone :doc.data()!['phone'],
+      medicalID :doc.data()!['medicalID'],
+      socialnumber :doc.data()!['socialnumber'],
+      clinicname: doc.data()!['clinicname'],
+      clinicaddress: doc.data()!['clinicaddress'],
+      uId :doc.data()!['uId'],
+      docid :doc.id,
+      profileimage: doc.data()!['profileimage'],
     );
     return dentist;
   }
 
 
   DentistModel copyWith({String? name,
-   String? email,
-   String? phone,
-   String? medicalID,
-   String? socialnumber,
-   String? clinicname,
-   String? clinicaddress,
-   String? uId,
-   String? docid,
-   String? profileimage,
+    String? email,
+    String? phone,
+    String? medicalID,
+    String? socialnumber,
+    String? clinicname,
+    String? clinicaddress,
+    String? uId,
+    String? docid,
+    String? profileimage,
   })=>DentistModel(
-    name: name??this.name,
-    email: email??this.email,
-    profileimage: profileimage??this.profileimage,
-    uId: uId??this.uId,
-    medicalID: medicalID??this.medicalID,
-    docid: docid??this.docid,
-    socialnumber: socialnumber??this.socialnumber,
-    clinicaddress: clinicaddress??this.clinicaddress,
-    clinicname: clinicname??this.clinicname,
-    phone: phone??this.phone
+      name: name??this.name,
+      email: email??this.email,
+      profileimage: profileimage??this.profileimage,
+      uId: uId??this.uId,
+      medicalID: medicalID??this.medicalID,
+      docid: docid??this.docid,
+      socialnumber: socialnumber??this.socialnumber,
+      clinicaddress: clinicaddress??this.clinicaddress,
+      clinicname: clinicname??this.clinicname,
+      phone: phone??this.phone
   );
   Map<String, dynamic> toMap() {
     return {

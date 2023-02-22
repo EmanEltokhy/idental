@@ -26,14 +26,38 @@ Widget defaultButton(width, height, text,arrow, fn) => TextButton(
             Icon(Icons.arrow_forward,color: Colors.white,)
           ]
           else
+
             Icon(Icons.logout_outlined,color: Colors.white),
+
 
         ],
       ),
     )
 );
 
-
+Widget getErrorText(String errorText) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 16.0),
+    child: Container(
+        height: 16,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 0, bottom: 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                errorText,
+                style: TextStyle(
+                    fontSize: 11,
+                    fontStyle: FontStyle.italic,
+                    color: Color(0xFFFF0000),
+                    fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        )),
+  );
+}
 Widget defaultFormField({
   required TextEditingController controller,
   required TextInputType type,
@@ -43,20 +67,28 @@ Widget defaultFormField({
   bool isPassword = false,
  String? Function(String?)? validate,
   required String label,
-  IconData? prefix,
-  IconData? suffix,
+
+  // IconData? prefix,
+  // IconData? suffix,
  void Function()? suffixPressed,
+
+  required var prefix,
+  IconData? suffix,
+  // Function? suffixPressed,
+
   bool isClickable = true,
   TextStyle? style,
   GlobalKey<FormFieldState>? key,
   FloatingLabelBehavior? floatingLabelBehavior,
 
+  String? intialvalue,
 
 
 
 
 }) =>
     TextFormField(
+
       // hintText: placeholder,
       // hintStyle: GoogleFonts.montserrat(
       //     fontSize: 16,
@@ -64,6 +96,9 @@ Widget defaultFormField({
       //     fontWeight: FontWeight.bold
       //
       // ),
+
+      initialValue: intialvalue,
+
       controller: controller,
       keyboardType: type,
       obscureText: isPassword,
@@ -82,6 +117,7 @@ Widget defaultFormField({
             borderSide: BorderSide(color: Colors.grey)),
         prefixIcon: Icon(prefix,
             color: Colors.black),
+
 suffixIcon: suffix!= null?
 IconButton(onPressed: suffixPressed,
     icon: Icon(suffix,
@@ -168,6 +204,10 @@ Widget buildReportItem({
 
 
 
+
+
+
+
 void navigateAndFinish(
     context,
     widget,
@@ -181,6 +221,7 @@ void navigateAndFinish(
         return false;
       },
     );
+
 
 void showToast({
   required String text,
@@ -217,6 +258,42 @@ Color chooseToastColor(ToastStates state) {
   return color;
 }
 
+
+
+// void showToast({
+//   required String text,
+//   required ToastStates state,
+// }) =>
+//     Fluttertoast.showToast(
+//       msg: text,
+//       toastLength: Toast.LENGTH_LONG,
+//       gravity: ToastGravity.BOTTOM,
+//       timeInSecForIosWeb: 5,
+//       backgroundColor: chooseToastColor(state),
+//       textColor: Colors.white,
+//       fontSize: 16.0,
+//     );
+
+// enum
+// enum ToastStates { SUCCESS, ERROR, WARNING }
+//
+// Color chooseToastColor(ToastStates state) {
+//   Color color;
+//
+//   switch (state) {
+//     case ToastStates.SUCCESS:
+//       color = Colors.green;
+//       break;
+//     case ToastStates.ERROR:
+//       color = Colors.red;
+//       break;
+//     case ToastStates.WARNING:
+//       color = Colors.amber;
+//       break;
+//   }
+//
+//   return color;
+// }
 
 
 // Widget buildTextField(String labelText, String placeholder, bool isPasswordTextField) {

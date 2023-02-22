@@ -17,46 +17,30 @@ class profileScreen extends StatelessWidget {
     var phoneController = TextEditingController();
     var clinic_nameController = TextEditingController();
     var clinic_addController = TextEditingController();
+    var socialnumController = TextEditingController();
+    var medicalIDController = TextEditingController();
 
     return BlocProvider(
         create:(BuildContext context) => AppCubit()..getUserData(),
         child: BlocConsumer<AppCubit, AppStates>(
-          listener: (context, state){},
+          listener: (context, state){
+
+          },
           builder: (context,state) {
 
 
             Size size = MediaQuery.of(context).size;
             if(state is GetDentistDataSuccessState){
               var model = state.dentist;
-              // String? profle_image = model.profileimage;
               nameController.text= model.name!;
               phoneController.text = model.phone!;
               clinic_nameController.text = model.clinicname!;
               clinic_addController.text = model.clinicaddress!;
+              socialnumController.text = model.socialnumber!;
+              medicalIDController.text = model.medicalID!;
+
               return Scaffold(
-                // appBar: AppBar(
-                //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                //   elevation: 1,
-                //   leading: IconButton(
-                //     icon: Icon(
-                //       Icons.arrow_back,
-                //       color: Colors.green,
-                //     ),
-                //     onPressed: () {},
-                //   ),
-                //   actions: [
-                //     IconButton(
-                //       icon: Icon(
-                //         Icons.settings,
-                //         color: Colors.green,
-                //       ),
-                //       onPressed: () {
-                //         // Navigator.of(context).push(MaterialPageRoute(
-                //         //     builder: (BuildContext context) => SettingsPage()));
-                //       },
-                //     ),
-                //   ],
-                // ),
+
                 body: Container(
                   padding: EdgeInsets.all(16),
                   child: ListView(
@@ -99,6 +83,9 @@ class profileScreen extends StatelessWidget {
                                       phone:phoneController.text,
                                       clinic_name:clinic_nameController.text,
                                       clinic_address: clinic_addController.text,
+                                      socialnumber: socialnumController.text,
+                                      medicalID: medicalIDController.text,
+
                                     ); }
                               ),
                             )
@@ -134,20 +121,20 @@ class profileScreen extends StatelessWidget {
                               //    )
                               //     )
                               // ),
-                         child: CircleAvatar(
-                            radius: 64.0,
-                            backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
-                            child: state.dentist.profileimage!.startsWith('https')?CircleAvatar(
-                              radius: 60.0,
-                              backgroundImage: NetworkImage(state.dentist.profileimage!)
+                              child: CircleAvatar(
+                                radius: 64.0,
+                                backgroundColor:
+                                Theme.of(context).scaffoldBackgroundColor,
+                                child: state.dentist.profileimage!.startsWith('https')?CircleAvatar(
+                                    radius: 60.0,
+                                    backgroundImage: NetworkImage(state.dentist.profileimage!)
 
-                            ):CircleAvatar(
-                          radius: 60.0,
-                          backgroundImage:  FileImage(File(state.dentist.profileimage!))
+                                ):CircleAvatar(
+                                    radius: 60.0,
+                                    backgroundImage:  FileImage(File(state.dentist.profileimage!))
 
-              ),
-                            ),
+                                ),
+                              ),
 
                             ),
                             Positioned(
@@ -182,9 +169,9 @@ class profileScreen extends StatelessWidget {
                         height: 35,
                       ),
                       defaultFormField(
-                        // controller:TextEditingController(text: state.dentist.name),
+
                         controller: nameController,
-                        //intialvalue:EditProfileCubit.get(context).model.name,
+
                         type: TextInputType.name,
                         label: 'NAME',
                         prefix: Icons.person,
@@ -195,7 +182,7 @@ class profileScreen extends StatelessWidget {
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
                       defaultFormField(
-                        // controller:TextEditingController(text: state.dentist.phone),
+
                         controller: phoneController,
                         type: TextInputType.phone,
                         label: 'PHONE',
@@ -207,7 +194,29 @@ class profileScreen extends StatelessWidget {
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
                       defaultFormField(
-                        // controller:TextEditingController(text: state.dentist.clinicname),
+
+                        controller: medicalIDController,
+                        type: TextInputType.number,
+                        label: 'Medical ID',
+                        prefix: Icons.add_card_sharp,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 15,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                      ),
+                      defaultFormField(
+                        controller: socialnumController,
+                        type: TextInputType.number,
+                        label: 'Social Number',
+                        prefix: Icons.account_box_sharp,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 15,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold),
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                      ),
+                      defaultFormField(
                         controller: clinic_nameController,
                         type: TextInputType.text,
                         label: 'CLINIC',
@@ -219,7 +228,6 @@ class profileScreen extends StatelessWidget {
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
                       defaultFormField(
-                        // controller:TextEditingController(text: state.dentist.clinicaddress),
                         controller: clinic_addController,
                         type: TextInputType.text,
                         label: 'ADDRESS',
@@ -230,12 +238,7 @@ class profileScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
-                      // buildTextField(
-                      //     "Full Name", "Eman El-Sayed Abd El-Aziz", false),
-                      // buildTextField("User Name", "emaneltokhy", false),
-                      // buildTextField("E-mail", "emaneltokhy@gmail.com", false),
-                      // buildTextField("Password", "***", true),
-                      // buildTextField("Country", "Egypt", false),
+
                       SizedBox(
                         height: 35,
                       ),
