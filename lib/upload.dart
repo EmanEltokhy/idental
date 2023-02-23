@@ -7,15 +7,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:idental/imagePreview.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadScreen extends StatefulWidget {
   @override
   _UploadScreen createState() => _UploadScreen();
+  const UploadScreen({required this.index});
+  final int index;
 }
 
 class _UploadScreen extends State<UploadScreen> {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

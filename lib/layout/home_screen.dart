@@ -17,6 +17,7 @@ import 'package:idental/upload.dart';
 
 
 import '../screens/appointment_screen.dart';
+import '../screens/select_model.dart';
 import '../tabbarPage.dart';
 import '../try.dart';
 
@@ -29,7 +30,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedScreenIndex = 0;
   final List _screens = [
-    {"screen": UploadScreen()},
+    {"screen": select_model()},
     {"screen": TabBarPage()},
     {"screen": NewReport()},
     {"screen": HistoryScreen()},
