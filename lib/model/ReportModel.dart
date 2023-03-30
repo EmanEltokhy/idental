@@ -5,7 +5,7 @@ class ReportModel {
   final String? uId;
   final String? docid;
   final String? profileimage;
-  final String? patientname;
+  final String? patientemail;
   final String? observation;
   // final String? datatime;
 
@@ -15,7 +15,7 @@ class ReportModel {
    this.uId,
    this.docid,
    this.profileimage,
-   this.patientname,
+   this.patientemail,
    this.observation,
    // this.datatime
   });
@@ -27,7 +27,7 @@ class ReportModel {
       uId :doc.data()!['uId'],
       docid :doc.id,
       profileimage: doc.data()!['profileimage'],
-      patientname: doc.data()!['patientname'],
+      patientemail: doc.data()!['patientemail'],
       observation: doc.data()!['observation'],
       // datatime: doc.data()!['datatime'],
     );
@@ -41,7 +41,7 @@ class ReportModel {
       'uId': uId??'',
       'docid':docid,
       'profileimage': profileimage??'',
-      'patientname' : patientname??'',
+      'patientemail' : patientemail??'',
       'observation' : observation??'',
       // 'datatime' : datatime,
 

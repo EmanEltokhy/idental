@@ -14,7 +14,7 @@ class NewReport extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var observationController = TextEditingController();
-    var patientnameController = TextEditingController();
+    var patientemailController = TextEditingController();
   return BlocProvider(create:(BuildContext context) => AppCubit()..getUserData(),
     child: BlocConsumer<AppCubit,AppStates>(
 
@@ -64,7 +64,7 @@ class NewReport extends StatelessWidget {
                                   // dentistname:AppCubit().model.name,
                                   // profileimage:AppCubit().model.profileimage,
                                   // uId: AppCubit().model.uId,
-                                  patientname: patientnameController.text,
+                                  patientemail: patientemailController.text,
                                   observation: observationController.text);
                               if(state is CreateReportSuccessState){
                                 Navigator.push(
@@ -109,13 +109,13 @@ class NewReport extends StatelessWidget {
 
                 TextFormField(
 
-                  controller: patientnameController,
+                  controller: patientemailController,
                   decoration: InputDecoration(
                     labelStyle: GoogleFonts.montserrat(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
                         color: Colors.grey),
-                    hintText: 'Patien Name',
+                    hintText: 'Patient Email',
                 ),
                 ),
                 SizedBox(

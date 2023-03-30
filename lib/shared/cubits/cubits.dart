@@ -203,10 +203,9 @@ ReportModel rr =ReportModel();
 
   void CreateReport({
      String? dentistname,
-   String? profileimage,
-    String? uId,
-    required String patientname,
-    // required String  datetime,
+     String? profileimage,
+     String? uId,
+    required String patientemail,
     required String observation,
 
   }){
@@ -217,7 +216,7 @@ ReportModel rr =ReportModel();
       dentistname:dentistname??model.name,
       profileimage: profileimage??model.profileimage,
       uId:uId?? model.uId,
-      patientname: patientname,
+      patientemail: patientemail,
       docid: rr.docid,
       // datatime: datetime,
       observation: observation,
