@@ -221,7 +221,7 @@ if(state is CreateDentistSucessState){
                                         phoneFieldKey.currentState!.validate();
                                       },
                                       onChange: (value){
-                                        BlocProvider.of<RegisterCubit>(context).updatePhone(value);
+                                        // BlocProvider.of<RegisterCubit>(context).updatePhone(value);
                                         },
                                       key: phoneFieldKey,
                                       type: TextInputType.phone,

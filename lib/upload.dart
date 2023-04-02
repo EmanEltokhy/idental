@@ -298,7 +298,7 @@ class _HomeState extends State<Home> {
 
     final resultCategory = _classifier.predict(imageInput);
 
-    final result = resultCategory.score >= 0.8
+    final result = resultCategory.score >= 0.7
         ? _ResultStatus.found
         : _ResultStatus.notFound;
     final plantLabel = resultCategory.label;

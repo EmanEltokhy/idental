@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:idental/screens/getting_started_screen.dart';
 
 import 'package:idental/shared/components/components.dart';
 import 'package:idental/shared/cubits/cubits.dart';
@@ -243,6 +244,13 @@ class profileScreen extends StatelessWidget {
                         height: 35,
                       ),
                       defaultButton(size.width, 50.0, "Logout", false, () {
+                        AppCubit.get(context).logout();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GettingStartedScreen(),
+                          ),
+                        );
                         print(nameController.text);
                       })
                     ],

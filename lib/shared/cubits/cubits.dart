@@ -99,7 +99,9 @@ class AppCubit extends Cubit<AppStates> {
     }
 
   }
-
+  void logout() {
+    FirebaseAuth.instance.signOut();
+  }
   Future<void> uploadProfileImage({
     required String name,
     required String phone,

@@ -27,8 +27,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      // home:HomeScreen(),
-      home: GettingStartedScreen(),
+      home:HomeScreen(),
+      // home: GettingStartedScreen(),
     );
   }
 }
