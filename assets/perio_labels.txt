@@ -1,0 +1,2 @@
+0 non periodontal
+1 periodontal

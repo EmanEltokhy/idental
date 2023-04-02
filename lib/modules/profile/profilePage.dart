@@ -22,7 +22,7 @@ class profileScreen extends StatelessWidget {
 
     return BlocProvider(
         create:(BuildContext context) => AppCubit()..getUserData(),
-        child: rBlocConsumer<AppCubit, AppStates>(
+        child: BlocConsumer<AppCubit, AppStates>(
           listener: (context, state){
 
           },

@@ -37,12 +37,19 @@ dependencies:
   iconly: ^1.0.1
   fluentui_icons: ^1.0.0
   table_calendar: ^3.0.8
-
+#  tflite_flutter: ^0.9.0
+#  tflite_flutter_helper: ^0.3.1
   image_picker: ^0.8.6
   fluttertoast: ^8.1.2
   flutter_dropzone: ^3.0.5
   font_awesome_flutter: ^10.4.0
   rxdart: ^0.27.7
+  tflite_flutter: ^0.9.0
+  tflite_flutter_helper:
+    git:
+      url: https://github.com/filofan1/tflite_flutter_helper.git
+      ref: 783f15e5a87126159147d8ea30b98eea9207ac70
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -98,7 +105,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/
-
+    - assets/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -149,6 +149,8 @@ if(state is CreateDentistSucessState){
                             type: TextInputType.phone,
                             label: 'Medical Id',
                             prefix: Icons.add_card_sharp,
+                            // prefix:
+                            //   i
                           ),
                           SizedBox(
                             height: 10,

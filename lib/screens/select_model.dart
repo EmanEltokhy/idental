@@ -29,7 +29,7 @@ class _select_modelState extends State<select_model> {
 
       _pageController.animateToPage(
         _currentPage,
-        duration: Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 500),
         curve: Curves.easeIn,
       );
     });
