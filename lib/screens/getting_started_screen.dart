@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:idental/modules/login/login.dart';
 import 'package:idental/modules/signup/signup.dart';
+import '../shared/notification_helper.dart';
 import '../widgets/slide_item.dart';
 import '../model/slide.dart';
 import '../widgets/slide_dots.dart';
@@ -33,6 +34,7 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
         curve: Curves.easeIn,
       );
     });
+    NotificationHelper.registerNotification();
   }
 
   @override

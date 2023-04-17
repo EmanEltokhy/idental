@@ -1,5 +1,6 @@
 // @dart=2.9
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:idental/modules/report/new_report.dart';
 import 'package:idental/screens/appointment_screen.dart';
 import 'package:idental/screens/appoit_screen.dart';
 import 'package:idental/shared/bloc_observer.dart';
+import 'package:idental/shared/notification_helper.dart';
 
 import 'package:idental/tabbarPage.dart';
 
@@ -17,6 +19,9 @@ import './screens/getting_started_screen.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await FirebaseMessaging.instance.setAutoInitEnabled(true);
+  await NotificationHelper.registerNotification();
+
   Bloc.observer = MyBlocObserver();
 
 

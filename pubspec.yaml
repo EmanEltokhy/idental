@@ -37,6 +37,7 @@ dependencies:
   iconly: ^1.0.1
   fluentui_icons: ^1.0.0
   table_calendar: ^3.0.8
+  flutter_local_notifications: ^13.0.0
 
   image_picker: ^0.8.6
   fluttertoast: ^8.1.2
@@ -53,13 +54,11 @@ dependencies:
   flutter_bloc: ^8.1.2
   conditional_builder: ^1.0.2
 
-    #Firebase
-#  firebase_core: ^2.5.0
-#  firebase_auth: ^4.2.2
-#  cloud_firestore: ^4.3.2
+  #Firebase
   firebase_core: ^2.5.0
   cloud_firestore: ^4.4.0
   firebase_auth: ^4.2.6
+  firebase_messaging: ^14.2.5
 
   firebase_storage: ^11.0.13
 

@@ -40,7 +40,24 @@ class AppCubit extends Cubit<AppStates> {
   // {
   //   _selectedScreenIndex = index;
   //   emit(AppChangeBottomNavBar());
+
   // }
+  void getPendingAppointments(){
+    List<Map<String, dynamic>> Appointments= [];
+    final useremail = FirebaseAuth.instance.currentUser!.email;
+    print(useremail);
+    var collection = FirebaseFirestore.instance.collection('Appointments');
+    collection.where('dentistemail', isEqualTo:useremail ).snapshots().listen((querySnapshot) {
+      for (var doc in querySnapshot.docs) {
+        Appointments.add(doc.data());
+
+      }
+      print(Appointments);
+      emit(GetAppointmentsSuccessState(Appointments));
+
+    });
+  }
+
 
   DentistModel model = DentistModel();
 

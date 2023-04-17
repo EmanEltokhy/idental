@@ -22,9 +22,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
     required String medicalID,
 
   }) {
-
-
-
     emit(RegisterLoadingState());
 
     FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -38,38 +35,43 @@ class RegisterCubit extends Cubit<RegisterStates> {
           emit(RegisterSucessState());
       DentistCreate(
         uId: value.user!.uid,
-        medicalID: medicalID,
         name: name,
         email: email,
         phone: phone,
 
         socialnumber:socialnumber,
+        medicalID: medicalID,
 
       );
     }).catchError((error) {
+      print("ERROR*********");
+
       emit(RegisterErrorState(error.toString()));
+      print(error.toString());
+      print("ERROR*********");
     });
   }
 
   void DentistCreate({
+    required String uId,
     required String name,
     required String email,
     required String phone,
-     required String uId,
+
 
     required String socialnumber,
     required String medicalID,
   }) {
     DentistModel model = DentistModel(
+      uId :uId,
+
       name: name,
       email: email,
       phone: phone,
-      uId :uId,
 
       socialnumber:socialnumber,
       medicalID: medicalID,
         );
-
     FirebaseFirestore.instance
         .collection('Dentists')
         .doc(uId)
@@ -79,7 +81,9 @@ class RegisterCubit extends Cubit<RegisterStates> {
       emit(CreateDentistSucessState());
     })
         .catchError((error) {
+          print("ERROR**************");
       print(error.toString());
+          print("ERROR**************");
     emit(CreateDentistErrorState(error.toString()));
     });
   }

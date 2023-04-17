@@ -54,3 +54,7 @@ class GetReportErrorState extends AppStates{
   final String error;
   GetReportErrorState(this.error);
 }
+class  GetAppointmentsSuccessState extends AppStates{
+  List<Map<String, dynamic>> Appointments;
+  GetAppointmentsSuccessState(this.Appointments);
+}

@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../shared/notification_helper.dart';
+
 class DentistModel {
   final String? name;
   final String? email;
@@ -11,6 +13,7 @@ class DentistModel {
   final String? uId;
   final String? docid;
   final String? profileimage;
+  final String? devicetoken;
 
 
   DentistModel({
@@ -25,6 +28,7 @@ class DentistModel {
     this.uId,
     this.docid,
     this.profileimage,
+    this.devicetoken,
 
 
   });
@@ -42,6 +46,7 @@ class DentistModel {
       uId :doc.data()!['uId'],
       docid :doc.id,
       profileimage: doc.data()!['profileimage'],
+        devicetoken:doc.data()!['devicetoken'],
     );
     return dentist;
   }
@@ -57,6 +62,7 @@ class DentistModel {
     String? uId,
     String? docid,
     String? profileimage,
+    String?devicetoken
   })=>DentistModel(
       name: name??this.name,
       email: email??this.email,
@@ -67,9 +73,12 @@ class DentistModel {
       socialnumber: socialnumber??this.socialnumber,
       clinicaddress: clinicaddress??this.clinicaddress,
       clinicname: clinicname??this.clinicname,
-      phone: phone??this.phone
+      phone: phone??this.phone,
+      devicetoken: devicetoken??this.devicetoken,
   );
   Map<String, dynamic> toMap() {
+    print("Device Token **");
+    print(NotificationHelper.deviceToken);
     return {
 
       'name': name,
@@ -81,7 +90,8 @@ class DentistModel {
       'clinicaddress': clinicaddress??'',
       'uId': uId,
       'docid':docid,
-      'profileimage': profileimage??'https://www.gentledental.com/sites/default/files/2020-03/generic-doctor-profile.jpg'
+      'profileimage': profileimage??'https://www.gentledental.com/sites/default/files/2020-03/generic-doctor-profile.jpg',
+      'devicetoken':NotificationHelper.deviceToken,
 
     };
   }
