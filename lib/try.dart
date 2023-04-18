@@ -148,7 +148,9 @@ class try2 extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: OutlinedButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        AppCubit.get(context).ApprovedAppointment(state.Appointments[index]['docId']);
+                                      },
                                       child: const Text(
                                         'Approve',
                                         style: TextStyle(color: Colors.black),
@@ -163,7 +165,9 @@ class try2 extends StatelessWidget {
                                       style: OutlinedButton.styleFrom(
                                         // backgroundColor: Config.primaryColor,
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+AppCubit.get(context).declinedAppointment(state.Appointments[index]['docId']);
+                                      },
                                       child: const Text(
                                         'Decline',
                                         style: TextStyle(color: Colors.black),

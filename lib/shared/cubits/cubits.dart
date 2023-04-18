@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:idental/model/Appointment.dart';
 import 'package:idental/model/DentistModel.dart';
 import 'package:idental/model/ReportModel.dart';
 import 'package:idental/shared/cubits/states.dart';
@@ -20,28 +21,7 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
-  // int _selectedScreenIndex = 0;
-  //
-  // List<Widget> _screens =
-  // [
-  //   UploadScreen(),
-  //   AppointmentScreen(),
-  //   HistoryScreen(),
-  //   profileScreen(),
-  // ];
-  // List<String> titles =
-  // [
-  //   'Upload',
-  //   'Appointment',
-  //   'History',
-  //   'Profile',
-  // ];
-  // void changeIndex(int index)
-  // {
-  //   _selectedScreenIndex = index;
-  //   emit(AppChangeBottomNavBar());
-
-  // }
+  
   void getPendingAppointments(){
     List<Map<String, dynamic>> Appointments= [];
     final useremail = FirebaseAuth.instance.currentUser!.email;
@@ -49,7 +29,10 @@ class AppCubit extends Cubit<AppStates> {
     var collection = FirebaseFirestore.instance.collection('Appointments');
     collection.where('dentistemail', isEqualTo:useremail ).snapshots().listen((querySnapshot) {
       for (var doc in querySnapshot.docs) {
-        Appointments.add(doc.data());
+   if(doc['status']=='Pending'){
+    Appointments.add(doc.data());
+}
+
 
       }
       print(Appointments);
@@ -58,6 +41,53 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
+
+  void declinedAppointment(String id){
+    var db = FirebaseFirestore.instance.collection('Appointments').doc(id).delete()
+        .then((value){
+      print("appointment is deleted successfully");
+      getPendingAppointments();
+    })
+        .catchError((error){print("failed delete");
+        }
+        );
+
+  }
+
+  void ApprovedAppointment(String id){
+    var db = FirebaseFirestore.instance.collection('Appointments').doc(id).update({'status':'Approved'})
+
+        .then((value) {print("status changed");
+    getPendingAppointments();}
+
+    )
+        .catchError((error){print("failed to change status");
+    }
+    );
+
+  }
+
+  void getApprovedApps(){
+    {
+      List<Map<String, dynamic>> ApprovedApps= [];
+      final useremail = FirebaseAuth.instance.currentUser!.email;
+      print(useremail);
+      var collection = FirebaseFirestore.instance.collection('Appointments');
+      collection.where('dentistemail', isEqualTo:useremail ).snapshots().listen((querySnapshot) {
+        for (var doc in querySnapshot.docs) {
+          if(doc['status']=='Approved'){
+            ApprovedApps.add(doc.data());
+          }
+
+
+        }
+        print(ApprovedApps);
+        emit(GetApprovedAppsSuccessState(ApprovedApps));
+
+      });
+
+    }
+  }
 
   DentistModel model = DentistModel();
 

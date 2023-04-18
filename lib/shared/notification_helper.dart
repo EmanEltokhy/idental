@@ -134,7 +134,7 @@ class NotificationHelper {
                 "notification": <String,dynamic>{
                   "title":title,
                   "body":body,
-                  "android_channel_id":"dbfood"
+                  "android_channel_id":"idental"
                 },
                 "to":token,
               }
