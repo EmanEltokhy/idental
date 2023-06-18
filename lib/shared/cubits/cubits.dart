@@ -28,12 +28,11 @@ class AppCubit extends Cubit<AppStates> {
     print(useremail);
     var collection = FirebaseFirestore.instance.collection('Appointments');
     collection.where('dentistemail', isEqualTo:useremail ).snapshots().listen((querySnapshot) {
+      Appointments.clear();
       for (var doc in querySnapshot.docs) {
    if(doc['status']=='Pending'){
     Appointments.add(doc.data());
 }
-
-
       }
       print(Appointments);
       emit(GetAppointmentsSuccessState(Appointments));
@@ -74,11 +73,11 @@ class AppCubit extends Cubit<AppStates> {
       print(useremail);
       var collection = FirebaseFirestore.instance.collection('Appointments');
       collection.where('dentistemail', isEqualTo:useremail ).snapshots().listen((querySnapshot) {
+        ApprovedApps.clear();
         for (var doc in querySnapshot.docs) {
           if(doc['status']=='Approved'){
             ApprovedApps.add(doc.data());
           }
-
 
         }
         print(ApprovedApps);

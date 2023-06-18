@@ -58,7 +58,16 @@ class  GetAppointmentsSuccessState extends AppStates{
   List<Map<String, dynamic>> Appointments;
   GetAppointmentsSuccessState(this.Appointments);
 }
-class  GetApprovedAppsSuccessState extends AppStates{
+// class  GetApprovedAppsSuccessState extends AppStates{
+//   List<Map<String, dynamic>> Apps;
+//   GetApprovedAppsSuccessState(this.Apps);
+// }
+class GetApprovedAppsSuccessState extends AppStates {
   List<Map<String, dynamic>> Apps;
+
   GetApprovedAppsSuccessState(this.Apps);
+
+  factory GetApprovedAppsSuccessState.empty() {
+    return GetApprovedAppsSuccessState([]);
+  }
 }

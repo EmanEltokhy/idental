@@ -86,7 +86,7 @@ class approved extends StatelessWidget {
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     padding: EdgeInsets.symmetric(horizontal: 24),
-                    itemCount: 1,
+                    itemCount: state.Apps.length,
                     separatorBuilder: (BuildContext context, int index) =>
                         Divider(indent: 3),
                     itemBuilder: (BuildContext context, int index) => Card(
