@@ -11,6 +11,7 @@ import 'package:idental/model/ReportModel.dart';
 import 'package:idental/shared/cubits/states.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:intl/intl.dart';
 import '../../history.dart';
 import '../../modules/profile/profilePage.dart';
 import '../../screens/appointment_screen.dart';
@@ -245,12 +246,13 @@ class AppCubit extends Cubit<AppStates> {
       emit(UpdateDentistDataErrorState(error.toString()));
     });
   }
-ReportModel rr =ReportModel();
+ReportModel rr =ReportModel(date: DateTime.now().toString());
 
   void CreateReport({
      String? dentistname,
    String? profileimage,
     String? uId,
+
     required String patientname,
     // required String  datetime,
     required String observation,
@@ -265,6 +267,8 @@ ReportModel rr =ReportModel();
       uId:uId?? model.uId,
       patientname: patientname,
       docid: rr.docid,
+      time: (DateFormat.Hm().format(DateTime.now())).toString(),
+      date: (DateFormat.yMMMMd().format(DateTime.now())).toString(),
       // datatime: datetime,
       observation: observation,
     );
@@ -273,10 +277,12 @@ ReportModel rr =ReportModel();
     .collection('Reports')
         .add(report_model.toMap())
     .then((value) {
-      print(value);
+      print("value $value");
       emit(CreateReportSuccessState(report: report_model,
      ));
+      print("after emit");
     }).catchError((error){
+      print("report error");
       emit(CreateReportErrorState(error.toString()));
     });
 
@@ -298,6 +304,9 @@ ReportModel rr =ReportModel();
         emit(GetReportSuccessState(Allreports));
 
     });
+  }
+  void logout() {
+    FirebaseAuth.instance.signOut();
   }
 
 }

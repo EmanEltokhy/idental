@@ -19,27 +19,27 @@ class HistoryScreen extends StatelessWidget {
         {
           if(state is GetReportSuccessState){
             return  Scaffold(
-                appBar: AppBar(
-                  backgroundColor: Colors.white,
-                  elevation: 2.0,
-                  actions: <Widget>[
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.notifications_outlined,
-                        color: Colors.teal,
-
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        IconlyLight.chat,
-                        color: Colors.teal,
-                      ),
-                    ),
-                  ],
-                ),
+                // appBar: AppBar(
+                //   backgroundColor: Colors.white,
+                //   elevation: 2.0,
+                //   actions: <Widget>[
+                //     IconButton(
+                //       onPressed: () {},
+                //       icon: Icon(
+                //         Icons.notifications_outlined,
+                //         color: Colors.teal,
+                //
+                //       ),
+                //     ),
+                //     IconButton(
+                //       onPressed: () {},
+                //       icon: Icon(
+                //         IconlyLight.chat,
+                //         color: Colors.teal,
+                //       ),
+                //     ),
+                //   ],
+                // ),
 
 
                 body:  SingleChildScrollView(
@@ -54,9 +54,12 @@ class HistoryScreen extends StatelessWidget {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) => buildReportItem(context:context,
-                          dentistname: state.reports[index]['dentistname'],
+                          dentistname: toCamelCase(state.reports[index]['dentistname']),
                           patientname: state.reports[index]['patientname'],
-                          observation: state.reports[index]['observation']),
+                          observation: state.reports[index]['observation'],
+                              date: state.reports[index]['date'],time: state.reports[index]['time']
+
+                          ),
                           separatorBuilder: (context, index) => SizedBox(
                             height: 20.0,
                            ),

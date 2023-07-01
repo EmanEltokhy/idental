@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List _screens = [
     {"screen": select_model()},
     {"screen": TabBarPage()},
-    {"screen": NewReport()},
+    {"screen": NewReport(obs: '',)},
     {"screen": HistoryScreen()},
     {"screen": profileScreen()}
   ];

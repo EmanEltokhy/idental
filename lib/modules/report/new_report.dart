@@ -3,18 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:idental/history.dart';
+import 'package:idental/layout/home_screen.dart';
 import 'package:idental/shared/components/components.dart';
 
 import '../../shared/cubits/cubits.dart';
 import '../../shared/cubits/states.dart';
 
 class NewReport extends StatelessWidget {
+  final String obs;
+  final _formKey = GlobalKey<FormState>();
+  final _obsKey = GlobalKey<FormState>();
 
+  NewReport({required this.obs});
   @override
   Widget build(BuildContext context) {
 
     var observationController = TextEditingController();
     var patientnameController = TextEditingController();
+    if(obs !='')
+      observationController.text = obs;
   return BlocProvider(create:(BuildContext context) => AppCubit()..getUserData(),
     child: BlocConsumer<AppCubit,AppStates>(
 
@@ -36,12 +43,17 @@ class NewReport extends StatelessWidget {
                         child: IconButton(
                           icon: Icon(Icons.arrow_back_ios),
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                            );
                           },
                         ),
                       ),
                       Expanded(
-                        flex: 3,
+                        flex: 2,
                         child: Center(
                           child: Text(
                             "New Report",
@@ -55,26 +67,22 @@ class NewReport extends StatelessWidget {
                         child: TextButton(
                             child: Text("Create",
                                 style: GoogleFonts.montserrat(
-                                  fontSize: 18,
+                                  fontSize: 20,
                                   color: Colors.teal,)),
                             onPressed: () {
-
-                              AppCubit.get(context).CreateReport(
-
-                                  // dentistname:AppCubit().model.name,
-                                  // profileimage:AppCubit().model.profileimage,
-                                  // uId: AppCubit().model.uId,
-                                  patientname: patientnameController.text,
-                                  observation: observationController.text);
-                              if(state is CreateReportSuccessState){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HistoryScreen(),
-                                  ),
-                                );
-                              }
+                              if (_formKey.currentState!.validate() && _obsKey.currentState!.validate()) {
+                                  AppCubit.get(context).CreateReport(
+                                      patientname: patientnameController.text,
+                                      observation: observationController.text);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HistoryScreen(),
+                                      ),
+                                    );
+                                  }
                             }
+                            // }
                         ),
                       )
                     ]
@@ -96,6 +104,7 @@ class NewReport extends StatelessWidget {
                     Expanded(
                       child: Text(
                        '${AppCubit.get(context).model.name}',
+                       //  '${toCamelCase(AppCubit.get(context).model.name)}',
                         style: TextStyle(
                           height: 1.4,
                         ),
@@ -107,30 +116,44 @@ class NewReport extends StatelessWidget {
                   height: 30,
                 ),
 
-                TextFormField(
+                Form(
+                  key: _formKey,
+                  child: TextFormField(
 
-                  controller: patientnameController,
-                  decoration: InputDecoration(
-                    labelStyle: GoogleFonts.montserrat(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey),
-                    hintText: 'Patien Name',
-                ),
+                    controller: patientnameController,
+                    validator: (value){
+                      if(value!.isEmpty)
+                        return "please enter patient name";
+                    },
+                    decoration: InputDecoration(
+                      labelStyle: GoogleFonts.montserrat(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey),
+                      hintText: 'Patien Name',
+                  ),
+                  ),
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 Expanded(child:
-                TextFormField(
-                  controller: observationController,
-                  decoration: InputDecoration(
-                    labelStyle: GoogleFonts.montserrat(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey),
-                    hintText: 'Please Write Your Observations.',
-                    border: InputBorder.none,
+                Form(
+                  key: _obsKey,
+                  child: TextFormField(
+                    validator: (value){
+                      if(value!.isEmpty)
+                        return "please write observation";
+                    },
+                    controller: observationController,
+                    decoration: InputDecoration(
+                      labelStyle: GoogleFonts.montserrat(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.grey),
+                      hintText: 'Please Write Your Observations.',
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),),
               ],

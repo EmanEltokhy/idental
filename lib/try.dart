@@ -77,111 +77,114 @@ class try2 extends StatelessWidget {
               backgroundColor: Colors.white,
               body:
               SafeArea(
-                child: Column(
-                  children: [
-                    // SizedBox(height: 20,),
-                    // Text('Upcoming Appointments',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-                    // SizedBox(height: 40,),
-                    ListView.separated(
-                      primary: false,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      padding: EdgeInsets.symmetric(horizontal: 24),
-                      itemCount: state.Appointments.length,
-                      separatorBuilder: (BuildContext context, int index) =>
-                          Divider(indent: 3),
-                      itemBuilder: (BuildContext context, int index) => Card(
-                        shape: RoundedRectangleBorder(
-                          side: const BorderSide(
-                            color: Colors.grey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      // SizedBox(height: 20,),
+                      // Text('Upcoming Appointments',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                      // SizedBox(height: 40,),
+                      ListView.separated(
+                        primary: false,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        padding: EdgeInsets.symmetric(horizontal: 24),
+                        itemCount: state.Appointments.length,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            Divider(indent: 3),
+                        itemBuilder: (BuildContext context, int index) => Card(
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                              color: Colors.grey,
+                            ),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        margin: true ? const EdgeInsets.only(bottom: 20) : EdgeInsets.zero,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Row(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundImage:
-                                    NetworkImage(
-                                        'https://th.bing.com/th/id/OIP.i2z-rKyDkWNqHIDo_-PJ8AHaEr?pid=ImgDet&rs=1'
+                          margin: true ? const EdgeInsets.only(bottom: 20) : EdgeInsets.zero,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Row(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundImage:
+                                      NetworkImage(
+                                          'https://th.bing.com/th/id/OIP.i2z-rKyDkWNqHIDo_-PJ8AHaEr?pid=ImgDet&rs=1'
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '${state.Appointments[index]['patientemail']}',
-                                        style: const TextStyle(
-                                          color: Colors.teal,
-                                          fontWeight: FontWeight.w700,
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${state.Appointments[index]['patientemail']}',
+                                          style: const TextStyle(
+                                            color: Colors.teal,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                ScheduleCard(
+                                  date: '${state.Appointments[index]['date']}',
+                                  day: '${state.Appointments[index]['day']}',
+                                  time: '${state.Appointments[index]['time']}',
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                // doctor part
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: OutlinedButton(
+                                        onPressed: () {
+                                          AppCubit.get(context).ApprovedAppointment(state.Appointments[index]['docId']);
+                                        },
+                                        child: const Text(
+                                          'Approve',
+                                          style: TextStyle(color: Colors.black),
                                         ),
                                       ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              ScheduleCard(
-                                date: '${state.Appointments[index]['date']}',
-                                day: '${state.Appointments[index]['day']}',
-                                time: '${state.Appointments[index]['time']}',
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              // doctor part
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        AppCubit.get(context).ApprovedAppointment(state.Appointments[index]['docId']);
-                                      },
-                                      child: const Text(
-                                        'Approve',
-                                        style: TextStyle(color: Colors.black),
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Expanded(
+                                      child: OutlinedButton(
+                                        style: OutlinedButton.styleFrom(
+                                          // backgroundColor: Config.primaryColor,
+                                        ),
+                                        onPressed: () {
+                                          print("befor cubit");
+                                          AppCubit.get(context).declinedAppointment(state.Appointments[index]['docId']);
+                                        },
+                                        child: const Text(
+                                          'Decline',
+                                          style: TextStyle(color: Colors.black),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Expanded(
-                                    child: OutlinedButton(
-                                      style: OutlinedButton.styleFrom(
-                                        // backgroundColor: Config.primaryColor,
-                                      ),
-                                      onPressed: () {
-AppCubit.get(context).declinedAppointment(state.Appointments[index]['docId']);
-                                      },
-                                      child: const Text(
-                                        'Decline',
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
 

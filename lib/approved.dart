@@ -76,76 +76,79 @@ class approved extends StatelessWidget {
             backgroundColor: Colors.white,
             body:
             SafeArea(
-              child: Column(
-                children: [
-                  // SizedBox(height: 20,),
-                  // Text('Upcoming Appointments',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-                  // SizedBox(height: 40,),
-                  ListView.separated(
-                    primary: false,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    itemCount: state.Apps.length,
-                    separatorBuilder: (BuildContext context, int index) =>
-                        Divider(indent: 3),
-                    itemBuilder: (BuildContext context, int index) => Card(
-                      shape: RoundedRectangleBorder(
-                        side: const BorderSide(
-                          color: Colors.grey,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    // SizedBox(height: 20,),
+                    // Text('Upcoming Appointments',style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+                    // SizedBox(height: 40,),
+                    ListView.separated(
+                      primary: false,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      itemCount: state.Apps.length,
+                      separatorBuilder: (BuildContext context, int index) =>
+                          Divider(indent: 3),
+                      itemBuilder: (BuildContext context, int index) => Card(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      margin: true ? const EdgeInsets.only(bottom: 20) : EdgeInsets.zero,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      'https://th.bing.com/th/id/OIP.i2z-rKyDkWNqHIDo_-PJ8AHaEr?pid=ImgDet&rs=1'),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      '${state.Apps[index]['patientemail']}',
-                                      style: const TextStyle(
-                                        color: Colors.teal,
-                                        fontWeight: FontWeight.w700,
+                        margin: true ? const EdgeInsets.only(bottom: 20) : EdgeInsets.zero,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                        'https://th.bing.com/th/id/OIP.i2z-rKyDkWNqHIDo_-PJ8AHaEr?pid=ImgDet&rs=1'),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${state.Apps[index]['patientemail']}',
+                                        style: const TextStyle(
+                                          color: Colors.teal,
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
 
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            ScheduleCard(
-                              date: '${state.Apps[index]['date']}',
-                              day: '${state.Apps[index]['day']}',
-                              time: '${state.Apps[index]['time']}',
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                          ],
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              ScheduleCard(
+                                date: '${state.Apps[index]['date']}',
+                                day: '${state.Apps[index]['day']}',
+                                time: '${state.Apps[index]['time']}',
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
 

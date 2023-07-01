@@ -7,7 +7,8 @@ class ReportModel {
   final String? profileimage;
   final String? patientname;
   final String? observation;
-  // final String? datatime;
+  final String?date;
+  final String? time;
 
 
  ReportModel({
@@ -17,7 +18,8 @@ class ReportModel {
    this.profileimage,
    this.patientname,
    this.observation,
-   // this.datatime
+   this.date,
+   this.time
   });
 
   factory ReportModel.fromdoc(QueryDocumentSnapshot<Map<String, dynamic>> doc){
@@ -29,6 +31,7 @@ class ReportModel {
       profileimage: doc.data()!['profileimage'],
       patientname: doc.data()!['patientname'],
       observation: doc.data()!['observation'],
+      // date: DateTime.now().toString(),
       // datatime: doc.data()!['datatime'],
     );
     return report;
@@ -43,7 +46,8 @@ class ReportModel {
       'profileimage': profileimage??'',
       'patientname' : patientname??'',
       'observation' : observation??'',
-      // 'datatime' : datatime,
+      'date' : date,
+      'time': time
 
 
     };

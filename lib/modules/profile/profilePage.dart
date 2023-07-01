@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:idental/shared/components/components.dart';
 import 'package:idental/shared/cubits/cubits.dart';
 import 'package:idental/shared/cubits/states.dart';
+
+import '../../screens/getting_started_screen.dart';
 class profileScreen extends StatelessWidget {
 
   @override
@@ -100,27 +102,27 @@ class profileScreen extends StatelessWidget {
                             Container(
                               width: 130,
                               height: 130,
-                              // decoration: BoxDecoration(
-                              //     border: Border.all(
-                              //         width: 4,
-                              //         // color: Theme.of(context).scaffoldBackgroundColor),
-                              //         color: Color(0xFD4D4D5FA)),
-                              //     boxShadow: [
-                              //       BoxShadow(
-                              //           spreadRadius: 2,
-                              //           blurRadius: 10,
-                              //           color: Colors.black.withOpacity(0.1),
-                              //           offset: Offset(0, 10)
-                              //       )
-                              //     ],
-                              //     shape: BoxShape.circle,
-                              //     image: DecorationImage(
-                              //         fit: BoxFit.cover,
-                              //         image: NetworkImage(
-                              //           '${state.dentist.profileimage}'
-                              //    )
-                              //     )
-                              // ),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 4,
+                                      // color: Theme.of(context).scaffoldBackgroundColor),
+                                      color: Color(0xFD4D4D5FA)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        spreadRadius: 2,
+                                        blurRadius: 10,
+                                        color: Colors.black.withOpacity(0.1),
+                                        offset: Offset(0, 10)
+                                    )
+                                  ],
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                          '${state.dentist.profileimage}'
+                                      )
+                                  )
+                              ),
                               child: CircleAvatar(
                                 radius: 64.0,
                                 backgroundColor:
@@ -146,17 +148,18 @@ class profileScreen extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
                                     border: Border.all(
-                                      width: 3,
+                                      width: 4,
                                       color: Theme
                                           .of(context)
                                           .scaffoldBackgroundColor,
                                     ),
-                                    color: Colors.white,
+                                    color: Colors.teal,
                                   ),
                                   child:
                                   IconButton(
                                     icon: Icon(Icons.camera_alt_outlined),
-                                    color: Colors.teal,
+                                    color: Colors.white,
+                                    padding: EdgeInsets.only(left: 0,top:1),
                                     onPressed: (){
                                       AppCubit.get(context).getProfileImage();
                                     },
@@ -243,7 +246,13 @@ class profileScreen extends StatelessWidget {
                         height: 35,
                       ),
                       defaultButton(size.width, 50.0, "Logout", false, () {
-                        print(nameController.text);
+                        AppCubit.get(context).logout();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => GettingStartedScreen(),
+                          ),
+                        );
                       })
                     ],
                   ),

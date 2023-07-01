@@ -115,7 +115,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
   updatePhone(String text) {
     if (text.length != 11 ) {
       _phoneNumberController.sink.addError("Please enter a valid phone number here");
-    } else if(!RegExp(r'^(:01[0125])[0-9]{10}$').hasMatch(text)){
+    } else if(!RegExp(r'^(01[0,1,2,5])[0-9]{8}$').hasMatch(text)){
       _phoneNumberController.sink.addError("Please enter a valid phone number here");
     }
     else {

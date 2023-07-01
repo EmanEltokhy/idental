@@ -133,6 +133,8 @@ Widget buildReportItem({
   required String dentistname,
   required String patientname,
   required String observation,
+  required String date,
+  required String time,
 }) => Card(
   clipBehavior: Clip.antiAliasWithSaveLayer,
   elevation: 10.0,
@@ -165,7 +167,7 @@ Widget buildReportItem({
                     ],
                   ),
                   Text(
-                    'Febrauray 20, 2023 at 11:00 pm',
+                    '$date at $time ',
 
                   ),
                 ],
@@ -258,6 +260,20 @@ Color chooseToastColor(ToastStates state) {
   return color;
 }
 
+String toCamelCase(String? word) {
+  List<String> words = word!.split(' ');
+  String w="";
+  // Capitalize the first letter of each word except the first word
+  for (int i = 0; i < words.length; i++) {
+    String currentWord = words[i];
+    words[i] = currentWord[0].toUpperCase() + currentWord.substring(1);
+    // words[i+1] = ' ';
+    w+=words[i]+" ";
+  }
+
+  // Join the words without spaces
+  return w;
+}
 
 
 // void showToast({

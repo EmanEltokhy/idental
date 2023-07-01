@@ -206,15 +206,15 @@ if(state is CreateDentistSucessState){
                                           fontWeight: FontWeight.bold,
                                           color: Colors.black),
                                       controller: phoneNumberController,
-                                      // validate: (value) {
-                                      //   if(value!.isEmpty){
-                                      //     return 'Please Enter a Phone Number';
-                                      //   }
-                                      //   else if(!RegExp(r'^01[0125][0-9]{8}').hasMatch(value))
-                                      //   {
-                                      //     return 'Please Enter a Valid Phone Number';
-                                      //   }
-                                      // },
+                                      validate: (value) {
+                                        if(value!.isEmpty){
+                                          return 'Please Enter a Phone Number';
+                                        }
+                                        else if(!RegExp(r'^01[0,1,2,5][0-9]{8}').hasMatch(value))
+                                        {
+                                          return 'Please Enter a Valid Phone Number';
+                                        }
+                                      },
                                       onSubmit: (value){
                                         phoneFieldKey.currentState!.validate();
                                       },
@@ -376,7 +376,7 @@ if(state is CreateDentistSucessState){
                                 if(formKey.currentState?.validate()==null)
                                 {
                                   RegisterCubit.get(context).DentistRegister(
-                                      name: nameController.text,
+                                      name: nameController.text.toLowerCase(),
                                       email: emailController.text,
                                       password: passwordController.text,
                                   medicalID: medicalIdController.text,
