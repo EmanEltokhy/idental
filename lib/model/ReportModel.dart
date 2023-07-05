@@ -31,15 +31,12 @@ class ReportModel {
       profileimage: doc.data()!['profileimage'],
       patientname: doc.data()!['patientname'],
       observation: doc.data()!['observation'],
-      // date: DateTime.now().toString(),
-      // datatime: doc.data()!['datatime'],
     );
     return report;
   }
 
   Map<String, dynamic> toMap() {
     return {
-
       'dentistname': dentistname??'',
       'uId': uId??'',
       'docid':docid,
@@ -48,8 +45,6 @@ class ReportModel {
       'observation' : observation??'',
       'date' : date,
       'time': time
-
-
     };
   }
 }

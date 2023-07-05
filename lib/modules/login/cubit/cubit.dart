@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idental/modules/login/cubit/states.dart';
+
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitalState());
 
@@ -13,18 +14,13 @@ class LoginCubit extends Cubit<LoginStates> {
     emit(LoginLoadinglState());
     FirebaseAuth.instance.signInWithEmailAndPassword(email: email,
         password: password).then((value){
-          print(value.user!.email);
-          print(value.user!.uid);
           emit(LoginSuccessState());
     }).catchError((error){
       emit(LoginErorrState(error.toString()));
     });
 }
 
-
   IconData suffix = Icons.visibility_outlined;
-
-
   bool isPassword = true;
 
   void changePasswordVisibility() {

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -7,11 +6,13 @@ class DoctorDetailPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _DoctorDetailState();
 }
+
 class _DoctorDetailState extends State<DoctorDetailPage> {
   @override
   Widget build(BuildContext context) {
     return initWidget(context);
   }
+
   Widget initWidget(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -47,8 +48,9 @@ class _DoctorDetailState extends State<DoctorDetailPage> {
               height: 200,
               decoration: BoxDecoration(
                   color: Color(0xff053F5E),
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))
-              ),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30))),
               child: Container(
                 margin: EdgeInsets.only(left: 30, bottom: 30),
                 child: SingleChildScrollView(
@@ -69,7 +71,8 @@ class _DoctorDetailState extends State<DoctorDetailPage> {
                           children: [
                             Container(
                               margin: EdgeInsets.only(top: 30),
-                              child: Text('Dr. Fred Mask',
+                              child: Text(
+                                'Dr. Fred Mask',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 22,
@@ -80,7 +83,8 @@ class _DoctorDetailState extends State<DoctorDetailPage> {
                             ),
                             Container(
                               margin: EdgeInsets.only(top: 10),
-                              child: Text('Heart surgen',
+                              child: Text(
+                                'Heart surgen',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
@@ -91,7 +95,8 @@ class _DoctorDetailState extends State<DoctorDetailPage> {
                             ),
                             Container(
                               margin: EdgeInsets.only(top: 15),
-                              child: Text('Rating: 4.5',
+                              child: Text(
+                                'Rating: 4.5',
                                 style: TextStyle(
                                   color: Colors.yellow,
                                   fontSize: 15,
@@ -110,7 +115,8 @@ class _DoctorDetailState extends State<DoctorDetailPage> {
             ),
             Container(
               margin: EdgeInsets.only(left: 20, top: 30),
-              child: Text('April 2020',
+              child: Text(
+                'April 2020',
                 style: TextStyle(
                   color: Color(0xff363636),
                   fontSize: 25,
@@ -138,7 +144,8 @@ class _DoctorDetailState extends State<DoctorDetailPage> {
             ),
             Container(
               margin: EdgeInsets.only(left: 20, top: 30),
-              child: Text('Morning',
+              child: Text(
+                'Morning',
                 style: TextStyle(
                   color: Color(0xff363636),
                   fontSize: 25,
@@ -166,7 +173,8 @@ class _DoctorDetailState extends State<DoctorDetailPage> {
             ),
             Container(
               margin: EdgeInsets.only(left: 25, top: 30),
-              child: Text('Evening',
+              child: Text(
+                'Evening',
                 style: TextStyle(
                   color: Color(0xff363636),
                   fontSize: 25,
@@ -226,142 +234,146 @@ class _DoctorDetailState extends State<DoctorDetailPage> {
   }
 
   Widget demoDates(String day, String date, bool isSelected) {
-    return isSelected ? Container(
-      width: 70,
-      margin: EdgeInsets.only(right: 15),
-      decoration: BoxDecoration(
-        color: Color(0xff107163),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            child: Text(
-              day,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w500,
-              ),
+    return isSelected
+        ? Container(
+            width: 70,
+            margin: EdgeInsets.only(right: 15),
+            decoration: BoxDecoration(
+              color: Color(0xff107163),
+              borderRadius: BorderRadius.circular(10),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 10),
-            padding: EdgeInsets.all(7),
-            child: Text(
-              date,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.bold
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  child: Text(
+                    day,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                  padding: EdgeInsets.all(7),
+                  child: Text(
+                    date,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    ) : Container(
-      width: 70,
-      margin: EdgeInsets.only(right: 15),
-      decoration: BoxDecoration(
-        color: Color(0xffEEEEEE),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            child: Text(
-              day,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w500,
-              ),
+          )
+        : Container(
+            width: 70,
+            margin: EdgeInsets.only(right: 15),
+            decoration: BoxDecoration(
+              color: Color(0xffEEEEEE),
+              borderRadius: BorderRadius.circular(10),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 10),
-            padding: EdgeInsets.all(7),
-            child: Text(
-              date,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.bold
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  child: Text(
+                    day,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 10),
+                  padding: EdgeInsets.all(7),
+                  child: Text(
+                    date,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 
   Widget doctorTimingsData(String time, bool isSelected) {
-    return isSelected ? Container(
-      margin: EdgeInsets.only(left: 20, top: 10),
-      decoration: BoxDecoration(
-        color: Color(0xff107163),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.only(right: 2),
-            child: Icon(
-              Icons.access_time,
-              color: Colors.white,
-              size: 18,
+    return isSelected
+        ? Container(
+            margin: EdgeInsets.only(left: 20, top: 10),
+            decoration: BoxDecoration(
+              color: Color(0xff107163),
+              borderRadius: BorderRadius.circular(5),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 2),
-            child: Text('08:30 AM',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 17,
-                fontFamily: 'Roboto',
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: 2),
+                  child: Icon(
+                    Icons.access_time,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 2),
+                  child: Text(
+                    '08:30 AM',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    ) : Container(
-      margin: EdgeInsets.only(left: 20, top: 10),
-      decoration: BoxDecoration(
-        color: Color(0xffEEEEEE),
-        borderRadius: BorderRadius.circular(5),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.only(right: 2),
-            child: Icon(
-              Icons.access_time,
-              color: Colors.black,
-              size: 18,
+          )
+        : Container(
+            margin: EdgeInsets.only(left: 20, top: 10),
+            decoration: BoxDecoration(
+              color: Color(0xffEEEEEE),
+              borderRadius: BorderRadius.circular(5),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 2),
-            child: Text('08:30 AM',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 17,
-                fontFamily: 'Roboto',
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: 2),
+                  child: Icon(
+                    Icons.access_time,
+                    color: Colors.black,
+                    size: 18,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 2),
+                  child: Text(
+                    '08:30 AM',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      fontFamily: 'Roboto',
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 }

@@ -1,16 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:idental/shared/components/components.dart';
 import 'package:idental/shared/cubits/cubits.dart';
 import 'package:idental/shared/cubits/states.dart';
-
 import '../../screens/getting_started_screen.dart';
-class profileScreen extends StatelessWidget {
 
+class profileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool showPassword = false;
@@ -23,18 +20,14 @@ class profileScreen extends StatelessWidget {
     var medicalIDController = TextEditingController();
 
     return BlocProvider(
-        create:(BuildContext context) => AppCubit()..getUserData(),
+        create: (BuildContext context) => AppCubit()..getUserData(),
         child: BlocConsumer<AppCubit, AppStates>(
-          listener: (context, state){
-
-          },
-          builder: (context,state) {
-
-
+          listener: (context, state) {},
+          builder: (context, state) {
             Size size = MediaQuery.of(context).size;
-            if(state is GetDentistDataSuccessState){
+            if (state is GetDentistDataSuccessState) {
               var model = state.dentist;
-              nameController.text= model.name!;
+              nameController.text = model.name!;
               phoneController.text = model.phone!;
               clinic_nameController.text = model.clinicname!;
               clinic_addController.text = model.clinicaddress!;
@@ -42,13 +35,11 @@ class profileScreen extends StatelessWidget {
               medicalIDController.text = model.medicalID!;
 
               return Scaffold(
-
                 body: Container(
                   padding: EdgeInsets.all(16),
                   child: ListView(
                     children: [
                       Row(
-
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -66,8 +57,7 @@ class profileScreen extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   "Edit Profile",
-                                  style: GoogleFonts.montserrat(
-                                      fontSize: 25),
+                                  style: GoogleFonts.montserrat(fontSize: 25),
                                 ),
                               ),
                             ),
@@ -77,22 +67,20 @@ class profileScreen extends StatelessWidget {
                                   child: Text("Edit",
                                       style: GoogleFonts.montserrat(
                                         fontSize: 20,
-                                        color: Colors.teal,)),
+                                        color: Colors.teal,
+                                      )),
                                   onPressed: () {
-
                                     AppCubit.get(context).uploadProfileImage(
                                       name: nameController.text,
-                                      phone:phoneController.text,
-                                      clinic_name:clinic_nameController.text,
+                                      phone: phoneController.text,
+                                      clinic_name: clinic_nameController.text,
                                       clinic_address: clinic_addController.text,
                                       socialnumber: socialnumController.text,
                                       medicalID: medicalIDController.text,
-
-                                    ); }
-                              ),
+                                    );
+                                  }),
                             )
-                          ]
-                      ),
+                          ]),
                       SizedBox(
                         height: 30,
                       ),
@@ -112,32 +100,28 @@ class profileScreen extends StatelessWidget {
                                         spreadRadius: 2,
                                         blurRadius: 10,
                                         color: Colors.black.withOpacity(0.1),
-                                        offset: Offset(0, 10)
-                                    )
+                                        offset: Offset(0, 10))
                                   ],
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: NetworkImage(
-                                          '${state.dentist.profileimage}'
-                                      )
-                                  )
-                              ),
+                                          '${state.dentist.profileimage}'))),
                               child: CircleAvatar(
                                 radius: 64.0,
                                 backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                                child: state.dentist.profileimage!.startsWith('https')?CircleAvatar(
-                                    radius: 60.0,
-                                    backgroundImage: NetworkImage(state.dentist.profileimage!)
-
-                                ):CircleAvatar(
-                                    radius: 60.0,
-                                    backgroundImage:  FileImage(File(state.dentist.profileimage!))
-
-                                ),
+                                    Theme.of(context).scaffoldBackgroundColor,
+                                child: state.dentist.profileimage!
+                                        .startsWith('https')
+                                    ? CircleAvatar(
+                                        radius: 60.0,
+                                        backgroundImage: NetworkImage(
+                                            state.dentist.profileimage!))
+                                    : CircleAvatar(
+                                        radius: 60.0,
+                                        backgroundImage: FileImage(
+                                            File(state.dentist.profileimage!))),
                               ),
-
                             ),
                             Positioned(
                                 bottom: 0,
@@ -149,18 +133,16 @@ class profileScreen extends StatelessWidget {
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       width: 4,
-                                      color: Theme
-                                          .of(context)
+                                      color: Theme.of(context)
                                           .scaffoldBackgroundColor,
                                     ),
                                     color: Colors.teal,
                                   ),
-                                  child:
-                                  IconButton(
+                                  child: IconButton(
                                     icon: Icon(Icons.camera_alt_outlined),
                                     color: Colors.white,
-                                    padding: EdgeInsets.only(left: 0,top:1),
-                                    onPressed: (){
+                                    padding: EdgeInsets.only(left: 0, top: 1),
+                                    onPressed: () {
                                       AppCubit.get(context).getProfileImage();
                                     },
                                   ),
@@ -172,9 +154,7 @@ class profileScreen extends StatelessWidget {
                         height: 35,
                       ),
                       defaultFormField(
-
                         controller: nameController,
-
                         type: TextInputType.name,
                         label: 'NAME',
                         prefix: Icons.person,
@@ -185,7 +165,6 @@ class profileScreen extends StatelessWidget {
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
                       defaultFormField(
-
                         controller: phoneController,
                         type: TextInputType.phone,
                         label: 'PHONE',
@@ -197,7 +176,6 @@ class profileScreen extends StatelessWidget {
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
                       defaultFormField(
-
                         controller: medicalIDController,
                         type: TextInputType.number,
                         label: 'Medical ID',
@@ -241,7 +219,6 @@ class profileScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
-
                       SizedBox(
                         height: 35,
                       ),
@@ -258,28 +235,22 @@ class profileScreen extends StatelessWidget {
                   ),
                 ),
               );
-            }
-            else if(state is GetDentistDataLoadingState){
+            } else if (state is GetDentistDataLoadingState) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            }
-            else if(state is GetDentistDataErrorState ){
+            } else if (state is GetDentistDataErrorState) {
               return Center(
                 child: Text(state.error),
               );
-            }
-            else if (state is UpdateDentistDataErrorState){
+            } else if (state is UpdateDentistDataErrorState) {
               return Center(
                 child: Text(state.error),
               );
-            }
-            else{
+            } else {
               return SizedBox();
             }
-
           },
-        )
-    );
+        ));
   }
 }

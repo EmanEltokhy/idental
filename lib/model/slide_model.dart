@@ -21,6 +21,6 @@ final slideList_model = [
   ),
   Slide_model(
     imageUrl: 'images/caries2.png',
-    title: 'Dental Caries',
+    title: 'Caries and others',
   ),
 ];

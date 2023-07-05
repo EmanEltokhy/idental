@@ -41,12 +41,12 @@ class AppointmentScreen extends StatelessWidget {
         rating: 'Rating 4.8'),
     DoctorModel(
         imageUrl:
-        'https://i.pinimg.com/564x/6c/b2/92/6cb292bb19398b280f4ca5ad0af94469.jpg',
+            'https://i.pinimg.com/564x/6c/b2/92/6cb292bb19398b280f4ca5ad0af94469.jpg',
         name: 'Dr. Cem Baysal',
         rating: 'Rating 4.8'),
     DoctorModel(
         imageUrl:
-        'https://i.pinimg.com/564x/6c/b2/92/6cb292bb19398b280f4ca5ad0af94469.jpg',
+            'https://i.pinimg.com/564x/6c/b2/92/6cb292bb19398b280f4ca5ad0af94469.jpg',
         name: 'Dr. Cem Baysal',
         rating: 'Rating 4.8'),
   ];
@@ -67,25 +67,6 @@ class AppointmentScreen extends StatelessWidget {
                   SizedBox(
                     height: 64,
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(
-                  //       horizontal: 16, vertical: 8),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.start,
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     // children: [
-                  //     //   Text(
-                  //     //       'Doctors',
-                  //     //     style: TextStyle(
-                  //     //         color: Colors.white,
-                  //     //       fontSize: 20.0,
-                  //     //       fontWeight: FontWeight.bold,
-                  //     //     ),
-                  //     //
-                  //     //   ),
-                  //     // ],
-                  //   ),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.all(15),
                     child: Container(
@@ -114,11 +95,10 @@ class AppointmentScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: ListView.separated(
-                physics:NeverScrollableScrollPhysics(),
+                physics: NeverScrollableScrollPhysics(),
                 // physics: NeverScrollableScrollphysics(),
                 shrinkWrap: true,
-                itemBuilder: (context, index) =>
-                    buildListItem(doctors[index]),
+                itemBuilder: (context, index) => buildListItem(doctors[index]),
                 separatorBuilder: (context, index) => Padding(
                   padding: EdgeInsets.symmetric(vertical: 15),
                   child: Container(

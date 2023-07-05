@@ -6,11 +6,9 @@ class ZoomableContainer extends StatefulWidget {
   @override
   _ZoomableContainerState createState() => _ZoomableContainerState();
 }
-
 class _ZoomableContainerState extends State<ZoomableContainer> {
   double _scale = 1.0;
   double _previousScale = 1.0;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -31,4 +29,3 @@ class _ZoomableContainerState extends State<ZoomableContainer> {
     );
   }
 }
-

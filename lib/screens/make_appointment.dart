@@ -53,10 +53,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 formatButtonTextStyle: const TextStyle(color: Colors.teal),
                 formatButtonVisible: false,
                 titleCentered: true,
-                // formatButtonDecoration: BoxDecoration(
-                //   borderRadius: BorderRadius.circular(10),
-                //   border: Border.all(color: Colors.teal, width: 2),
-                // ),
                 leftChevronIcon: const Icon(
                   Icons.arrow_back_ios,
                   color: Colors.teal,
@@ -84,7 +80,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
               ),
               onDaySelected: (selectedDay, focusedDay) {
                 if (!isSameDay(_selectedDay, selectedDay)) {
-                  // Call `setState()` when updating the selected day
                   setState(() {
                     _selectedDay = selectedDay;
                     _focusedDay = focusedDay;
@@ -96,14 +91,12 @@ class _CalendarScreenState extends State<CalendarScreen> {
               },
               onFormatChanged: (format) {
                 if (_calendarFormat != format) {
-                  // Call `setState()` when updating calendar format
                   setState(() {
                     _calendarFormat = format;
                   });
                 }
               },
               onPageChanged: (focusedDay) {
-                // No need to call `setState()` here
                 _focusedDay = focusedDay;
               },
             ),

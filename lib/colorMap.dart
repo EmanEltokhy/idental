@@ -34,13 +34,9 @@ class colormap extends StatelessWidget {
                           shape: BoxShape.circle,
                           border: Border.all(
                             width: 4,
-                            color: Theme
-                                .of(context)
-                                .scaffoldBackgroundColor,
+                            color: Theme.of(context).scaffoldBackgroundColor,
                           ),
-                          // borderRadius: BorderRadius.circular(6),
-                          color: entry.value
-                      ),
+                          color: entry.value),
                     ),
                     SizedBox(height: 8),
                     Text(entry.key),

@@ -6,49 +6,38 @@ import 'package:idental/model/DentistModel.dart';
 import 'package:idental/modules/signup/cubit/states.dart';
 import 'package:rxdart/rxdart.dart';
 
-
 class RegisterCubit extends Cubit<RegisterStates> {
   RegisterCubit() : super(RegisterInitalState());
 
   static RegisterCubit get(context) => BlocProvider.of(context);
 
   void DentistRegister({
-
     required String name,
     required String email,
     required String password,
     required String phone,
     required String socialnumber,
     required String medicalID,
-
   }) {
     emit(RegisterLoadingState());
 
-    FirebaseAuth.instance.createUserWithEmailAndPassword(
+    FirebaseAuth.instance
+        .createUserWithEmailAndPassword(
       email: email,
       password: password,
     )
         .then((value) {
-
-          print(value.user?.email);
-          print(value.user?.uid);
-          emit(RegisterSucessState());
+      emit(RegisterSucessState());
       DentistCreate(
         uId: value.user!.uid,
         name: name,
         email: email,
         phone: phone,
-
-        socialnumber:socialnumber,
+        socialnumber: socialnumber,
         medicalID: medicalID,
-
       );
     }).catchError((error) {
-      print("ERROR*********");
-
       emit(RegisterErrorState(error.toString()));
-      print(error.toString());
-      print("ERROR*********");
     });
   }
 
@@ -57,107 +46,91 @@ class RegisterCubit extends Cubit<RegisterStates> {
     required String name,
     required String email,
     required String phone,
-
-
     required String socialnumber,
     required String medicalID,
   }) {
     DentistModel model = DentistModel(
-      uId :uId,
-
+      uId: uId,
       name: name,
       email: email,
       phone: phone,
-
-      socialnumber:socialnumber,
+      socialnumber: socialnumber,
       medicalID: medicalID,
-        );
+    );
     FirebaseFirestore.instance
         .collection('Dentists')
         .doc(uId)
         .set(model.toMap())
-        .then((value)
-    {
+        .then((value) {
       emit(CreateDentistSucessState());
-    })
-        .catchError((error) {
-          print("ERROR**************");
-      print(error.toString());
-          print("ERROR**************");
-    emit(CreateDentistErrorState(error.toString()));
+    }).catchError((error) {
+      emit(CreateDentistErrorState(error.toString()));
     });
   }
 
-  IconData suffix = Icons.visibility_outlined ;
+  IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
 
-  void changePasswordVisibility()
-  {
+  void changePasswordVisibility() {
     isPassword = !isPassword;
-    suffix = (isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined) ;
+    suffix = (isPassword
+        ? Icons.visibility_outlined
+        : Icons.visibility_off_outlined);
 
     emit(ChangePasswordVisibilityState());
   }
 
   bool checkBoxValue = false;
-  void ChangeCheckBox(){
-  if (checkBoxValue == true) {
-  checkBoxValue = false;
-  } else {
-  checkBoxValue = true;
-  }
-  emit(ChangeCheckBoxState());
+  void ChangeCheckBox() {
+    if (checkBoxValue == true) {
+      checkBoxValue = false;
+    } else {
+      checkBoxValue = true;
+    }
+    emit(ChangeCheckBoxState());
   }
 
   var _phoneNumberController = BehaviorSubject<String>();
   Stream<String> get phoneNumberStream => _phoneNumberController.stream;
 
   updatePhone(String text) {
-    if (text.length != 11 ) {
-      _phoneNumberController.sink.addError("Please enter a valid phone number here");
-    } else if(!RegExp(r'^(01[0,1,2,5])[0-9]{8}$').hasMatch(text)){
-      _phoneNumberController.sink.addError("Please enter a valid phone number here");
-    }
-    else {
+    if (text.length != 11) {
+      _phoneNumberController.sink
+          .addError("Please enter a valid phone number here");
+    } else if (!RegExp(r'^(01[0,1,2,5])[0-9]{8}$').hasMatch(text)) {
+      _phoneNumberController.sink
+          .addError("Please enter a valid phone number here");
+    } else {
       _phoneNumberController.sink.add(text);
     }
   }
-
 
   var _socialnumberController = BehaviorSubject<String>();
   Stream<String> get socialnumberStream => _socialnumberController.stream;
 
   updateSocialNumber(String text) {
-    if (text.length != 14 ) {
-      _socialnumberController.sink.addError("Please enter your 14 digit phone number here");
+    if (text.length != 14) {
+      _socialnumberController.sink
+          .addError("Please enter your 14 digit phone number here");
     } else {
       _socialnumberController.sink.add(text);
     }
-
-
-
   }
-
 
   var _emailController = BehaviorSubject<String>();
   Stream<String> get emailStream => _emailController.stream;
 
-
   updateEmail(String text) {
     if (text.isEmpty ||
         !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-            .hasMatch(text)){
+            .hasMatch(text)) {
       _emailController.sink.addError('Please enter valid email');
-
-    }
-    else{
+    } else {
       _emailController.sink.add(text);
     }
   }
-  void onNext(){
+
+  void onNext() {
     print("Phone number = " + _phoneNumberController.value.toString());
-
   }
-
-
 }

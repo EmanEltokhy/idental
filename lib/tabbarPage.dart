@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:idental/try.dart';
+import 'package:idental/Pending.dart';
 import 'approved.dart';
 
 class TabBarPage extends StatefulWidget {
@@ -35,13 +35,15 @@ class _TabBarPageState extends State<TabBarPage>
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              SizedBox(height: 50,),
-              Text('Appointments',style: GoogleFonts.montserrat(
-                fontSize: 26,
-                color: Colors.black,fontWeight: FontWeight.bold)),
-              // SizedBox(height: 50),
+              SizedBox(
+                height: 50,
+              ),
+              Text('Appointments',
+                  style: GoogleFonts.montserrat(
+                      fontSize: 26,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold)),
               Container(
-                // height: 50,
                 width: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -53,9 +55,10 @@ class _TabBarPageState extends State<TabBarPage>
                         unselectedLabelColor: Colors.teal,
                         indicatorSize: TabBarIndicatorSize.label,
                         indicator: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [Colors.teal,
-                                  Color(0xFF80CBC4),]),
+                            gradient: LinearGradient(colors: [
+                              Colors.teal,
+                              Color(0xFF80CBC4),
+                            ]),
                             borderRadius: BorderRadius.circular(50),
                             color: Colors.redAccent),
                         controller: tabController,
@@ -80,7 +83,7 @@ class _TabBarPageState extends State<TabBarPage>
                 child: TabBarView(
                   controller: tabController,
                   children: [
-                    try2(),
+                    pending(),
                     approved(),
                   ],
                 ),

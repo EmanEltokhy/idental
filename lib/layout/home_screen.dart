@@ -1,28 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:fluentui_system_icons/fluentui_system_icons.dart';
-import 'package:iconly/iconly.dart';
-import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:idental/history.dart';
-import 'package:idental/modules/login/login.dart';
-
 import 'package:idental/modules/report/new_report.dart';
-import 'package:idental/upload.dart';
-
-
 import 'package:idental/modules/profile/profilePage.dart';
-import 'package:idental/upload.dart';
-
-// import '../modules/profile/profilePage.dart';
-
-
-import '../screens/appointment_screen.dart';
 import '../screens/select_model.dart';
 import '../tabbarPage.dart';
-import '../try.dart';
 
 class HomeScreen extends StatefulWidget {
-  //const HomeScreen({key? key}) : super(key: key);
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -32,7 +16,11 @@ class _HomeScreenState extends State<HomeScreen> {
   final List _screens = [
     {"screen": select_model()},
     {"screen": TabBarPage()},
-    {"screen": NewReport(obs: '',)},
+    {
+      "screen": NewReport(
+        obs: '',
+      )
+    },
     {"screen": HistoryScreen()},
     {"screen": profileScreen()}
   ];
@@ -51,15 +39,12 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
-            BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                blurRadius: 9
-            ),
+            BoxShadow(color: Colors.grey.withOpacity(0.5), blurRadius: 9),
           ],
         ),
         child: SafeArea(
           child: Padding(
-            padding:const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: GNav(
               backgroundColor: Colors.white,
               color: Colors.teal,
@@ -106,6 +91,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
-

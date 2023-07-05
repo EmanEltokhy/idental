@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:gif/gif.dart';
 
 class LoaderState extends StatefulWidget {
@@ -32,8 +31,6 @@ class _LoaderStateState extends State<LoaderState>
         elevation: 20,
         borderRadius: BorderRadius.circular(10.0),
         child: Container(
-
-          // color: Color(0XFF0000FFFF),
             width: 110,
             height: 110,
             decoration: BoxDecoration(
@@ -44,7 +41,7 @@ class _LoaderStateState extends State<LoaderState>
               child: Gif(
                 image: AssetImage("images/dental.gif"),
                 controller:
-                controller1, // if duration and fps is null, original gif fps will be used.
+                    controller1, // if duration and fps is null, original gif fps will be used.
                 autostart: Autostart.loop,
                 onFetchCompleted: () {
                   controller1.reset();

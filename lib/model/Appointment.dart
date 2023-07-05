@@ -13,7 +13,7 @@ class Appointment {
   Appointment({
     this.patientemail,
     this.dentistname,
-   this.dentistemail,
+    this.dentistemail,
     this.status,
     this.date,
     this.time,
@@ -39,7 +39,7 @@ class Appointment {
       'patientemail': patientemail,
       'dentistname': dentistname,
       'dentistemail': dentistemail,
-      'status': status??'Pending',
+      'status': status ?? 'Pending',
       'date': date,
       'time': time,
       'day': day,

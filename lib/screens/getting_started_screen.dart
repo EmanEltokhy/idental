@@ -94,34 +94,34 @@ class _GettingStartedScreenState extends State<GettingStartedScreen> {
               SizedBox(
                 height: 20,
               ),
-              defaultButton(250.0, 50.0, 'Create your account',true,(){Navigator.push(
-              context,
-              MaterialPageRoute(
-              builder: (context) => Signup(),
-              ),
-                 );}),
+              defaultButton(250.0, 50.0, 'Create your account', true, () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Signup(),
+                  ),
+                );
+              }),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
                     'Have an account?',
-                      style: GoogleFonts.montserrat(
-                        fontSize: 15,
-                        color: Colors.grey),
+                    style: GoogleFonts.montserrat(
+                        fontSize: 15, color: Colors.grey),
                   ),
                   TextButton(
                     child: Text(
                       'Login',
-                        style: GoogleFonts.montserrat(
-                            color: Colors.teal,
-                            fontSize: 15),
+                      style: GoogleFonts.montserrat(
+                          color: Colors.teal, fontSize: 15),
                     ),
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Login(),
-                              ),
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Login(),
+                        ),
                       );
                     },
                   ),

@@ -1,12 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:idental/modules/login/login.dart';
-import 'package:idental/modules/signup/signup.dart';
 import '../widgets/slide_item_model.dart';
 import '../model/slide_model.dart';
 import '../widgets/slide_dots.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:idental/shared/components/components.dart';
 
 class select_model extends StatefulWidget {
   @override
@@ -26,7 +22,6 @@ class _select_modelState extends State<select_model> {
       } else {
         _currentPage = 0;
       }
-
       _pageController.animateToPage(
         _currentPage,
         duration: Duration(milliseconds: 300),
